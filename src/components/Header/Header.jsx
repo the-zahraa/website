@@ -3,22 +3,22 @@ import "./Header.css";
 
 
 const Header=() =>{
-    return{
+    return(
 
         <header className = "header">
             <nav className="nav">
                 <ul className="nav-links">
-                    <li>Services</li>
-                    <li>Projects</li>
-                    <li>About Me</li>
-                    <li>Blog</li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#about-me">About Me</a></li>
+                    <li><a href="#blog">Blog</a></li>
                 </ul>
 
             </nav>
         </header>
 
         
-    }
+    );
 }
 
 export default Header;
