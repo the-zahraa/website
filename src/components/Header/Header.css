@@ -1,26 +1,39 @@
-*{
+* {
     background-color: #000000;
-    font-family: 'Roboto Mono', monospace;
-}
-.header {
+    font-family: "Roboto Mono", monospace;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-
-    margin: 10px;
+    padding: 10px 20px;
+    color: #ffffff;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-right: 20px;
   }
   
   .nav {
     display: flex;
-   
+    align-items: center;
+    flex-grow: 1; /* Ensures the navigation takes up available space */
+    justify-content: flex-end; /* Align nav links closer to the email */
   }
   
   .nav-links {
     display: flex;
-    gap: 25px;
+    gap: 20px; /* Adjusted gap to reduce spacing between links */
     list-style: none;
     padding: 0;
-    margin-left: 700px;
-
+    margin-right: 20px; /* Push links closer to the email */
   }
   
   .nav-links li {
@@ -29,38 +42,67 @@
   
   .nav-links a {
     text-decoration: none;
-    color:#ffffff;
-    transition: color 1.2s ease;
+    color: #ffffff;
+    transition: color 0.3s ease;
   }
   
   .nav-links a:hover {
-    color:#e000ff;
-  }
-  
-  .separator {
-    border-left: 6px;
-    height: 20px;
-    border-color:rgb(113, 113, 113);
-    border-radius: 3px;
-    align-items: center; 
-    
+    color: #e000ff;
   }
   
   .contact {
     font-size: 16px;
     display: flex;
     align-items: center;
-    
+    color: #e000ff;
   }
   
   .contact a {
     color: #e000ff;
-    text-decoration:underline #e3a8ec;
-    
+    text-decoration: underline #e3a8ec;
   }
   
   .contact a:hover {
     text-decoration: underline;
-
+  }
+  
+  /* Burger Menu Styles */
+  .burger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+  }
+  
+  .burger-menu div {
+    width: 25px;
+    height: 3px;
+    background-color: #ffffff;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 1024px) {
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      background-color: #111111;
+      padding: 10px;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      border-radius: 8px;
+    }
+  
+    .nav-links.open {
+      display: flex;
+    }
+  
+    .contact {
+      display: none; /* Hide email on smaller screens */
+    }
+  
+    .burger-menu {
+      display: flex;
+    }
   }
   

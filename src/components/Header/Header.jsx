@@ -1,29 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import "./Header.css";
 
+const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const isMobile = useMediaQuery({ maxWidth: 1024 });
 
-const Header=() =>{
-    return(
+  return (
+    <header className="header">
+      {/* Logo on the left */}
+      <div className="logo">Zahraa Naaim</div>
 
-        <header className = "header">
-            <nav className="nav">
-                <ul className="nav-links">
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#about-me">About Me</a></li>
-                    <li><a href="#blog">Blog</a></li>
-                </ul>
+      <nav className="nav">
+        {/* Burger Menu for smaller screens */}
+        {isMobile && (
+          <div
+            className="burger-menu"
+            onClick={() => setMenuOpen((prev) => !prev)}
+          >
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        )}
 
-            </nav>
+        {/* Navigation Links */}
+        <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
+          <li>
+            <a href="#services">Services</a>
+          </li>
+          <li>
+            <a href="#projects">Projects</a>
+          </li>
+          <li>
+            <a href="#about-me">About Me</a>
+          </li>
+          <li>
+            <a href="#blog">Blog</a>
+          </li>
 
-            <hr className="separator"/>
-            <div className = "contact">
-                <p><a href="sondoscondoss@gmail.com">info@zahraa.io</a></p>
-            </div>
-        </header>
+          {/* Email appears inside the burger menu on smaller screens */}
+          {isMobile && (
+            <li className="contact">
+              <a href="mailto:info@zahraa.io">info@zahraa.io</a>
+            </li>
+          )}
+        </ul>
+      </nav>
 
-        
-    );
-}
+      {/* Email stays on the right for larger screens */}
+      {!isMobile && (
+        <div className="contact">
+          <a href="mailto:info@zahraa.io">info@zahraa.io</a>
+        </div>
+      )}
+    </header>
+  );
+};
 
 export default Header;
