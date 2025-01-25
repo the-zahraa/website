@@ -15,6 +15,11 @@ const Header=() =>{
                 </ul>
 
             </nav>
+
+            <hr className="separator"/>
+            <div className = "contact">
+                <p><a href="sondoscondoss@gmail.com">info@zahraa.io</a></p>
+            </div>
         </header>
 
         
