@@ -1,31 +1,49 @@
 * {
-    background-color: #000000;
     font-family: "Roboto Mono", monospace;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  }
+
+  body{
+    background-color: #000000;
   }
   
   .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding-top: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
     color: #ffffff;
+    position: relative;
+    background-color: #000000;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    margin-right: 9px;
+    transition:none ;
   }
+
+  
   
   .logo {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
     color: #ffffff;
-    margin-right: 20px;
+    transition:color 0.5s ease; 
+    align-items: start;
+    z-index: 100;
   }
-  
+
   .nav {
     display: flex;
     align-items: center;
     flex-grow: 1; /* Ensures the navigation takes up available space */
     justify-content: flex-end; /* Align nav links closer to the email */
+    position: relative;
   }
   
   .nav-links {
@@ -34,6 +52,7 @@
     list-style: none;
     padding: 0;
     margin-right: 20px; /* Push links closer to the email */
+    transition: all 0.3s ease;
   }
   
   .nav-links li {
@@ -66,43 +85,105 @@
     text-decoration: underline;
   }
   
-  /* Burger Menu Styles */
-  .burger-menu {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
+ /* Burger Menu Styles */
+.burger-menu {
+    display: flex;
+    flex-direction:column;
+    gap: 6px;
     cursor: pointer;
+    position: relative;
+    z-index:100; 
   }
   
   .burger-menu div {
-    width: 25px;
-    height: 3px;
+    width: 32px;
+    height: 1.5px;
     background-color: #ffffff;
+    border-radius: 3px;
+    transition: all 0.3s ease; /* Smooth transition for animations */
   }
+
+  /* .burger-menu div:nth-child(2) {
+    width: 15px; /* Smaller width for the middle line */
+   /* margin: 0 auto; /* Center the shorter line */
+  
+  
+  /* When the menu is open */
+  .burger-menu.open div:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    background-color: #000000;
+  }
+  
+  .burger-menu.open div:nth-child(2) {
+    opacity: 0; /* Hide the middle line */
+    transform: scaleX(0.5); /*Make it shorter*/
+  }
+  
+  .burger-menu.open div:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+    background-color: #000000;
+  }
+  
   
   /* Responsive Styles */
   @media (max-width: 1024px) {
-    .nav-links {
-      display: none;
-      flex-direction: column;
-      background-color: #111111;
-      padding: 10px;
-      position: absolute;
-      top: 60px;
-      right: 20px;
-      border-radius: 8px;
-    }
+
+        .nav-links {
+          display: none;
+          position:fixed;
+          top: 1%;
+          left: 1.5%;
+          width: calc(100% - 15px); 
+          height: 50%; /* Upper half of the screen */
+          border-radius: 10px;
+          background-color: #ffffff;
+          flex-direction: column;
+          align-items:start;
+          justify-content:center;
+          padding: 20px;
+          padding-top: 60px;
+          gap: 15px;
+          
+          
+        }
+      
+        .nav-links.open {
+          display:flex;
+        }
+      
+        /* .burger-menu {
+          display:flex; 
+        } */
+
+        .header.menu-open .logo{
+            color: #000000;
+          }
+
+          .header.menu-open{
+            background-color: #ffffff;
+        
+          
+        
+          }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #000000; /* Change this to your desired color */
+            background-color: transparent; /* Ensure no background */
+            padding: 10px 0; /* Add spacing around text if needed */
+            display: block;
+            text-align: left;
+          }
+
+          /* Fine lines between navigation items */
+        .nav-links li {
+            border-bottom: 1px solid #ddd; /* Add a light gray line */
+            margin: 0; /* Ensure consistent spacing */
+            width: 100%;
+         }
+        .nav-links li:last-child {
+            border-bottom: none; /* Remove the line for the last item */
+        }
+
   
-    .nav-links.open {
-      display: flex;
-    }
-  
-    .contact {
-      display: none; /* Hide email on smaller screens */
-    }
-  
-    .burger-menu {
-      display: flex;
-    }
   }
-  

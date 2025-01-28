@@ -7,7 +7,7 @@ const Header = () => {
   const isMobile = useMediaQuery({ maxWidth: 1024 });
 
   return (
-    <header className="header">
+    <header className={`header ${menuOpen ? "menu-open" : ""}`}>
       {/* Logo on the left */}
       <div className="logo">Zahraa Naaim</div>
 
@@ -15,7 +15,7 @@ const Header = () => {
         {/* Burger Menu for smaller screens */}
         {isMobile && (
           <div
-            className="burger-menu"
+            className={`burger-menu ${menuOpen ? "open" : ""}`}
             onClick={() => setMenuOpen((prev) => !prev)}
           >
             <div></div>
@@ -38,11 +38,9 @@ const Header = () => {
           <li>
             <a href="#blog">Blog</a>
           </li>
-
-          {/* Email appears inside the burger menu on smaller screens */}
           {isMobile && (
-            <li className="contact">
-              <a href="mailto:info@zahraa.io">info@zahraa.io</a>
+            <li>
+              <a href="#Get in touch">Get in touch</a>
             </li>
           )}
         </ul>
