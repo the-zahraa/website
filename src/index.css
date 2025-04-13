@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --font-poppins: "Poppins", sans-serif;
+  --font-playfair: "Playfair Display", serif;
+  --color-zahraa-purple: #6B46C1;
+  --color-zahraa-violet: #9F7AEA;
+  --color-zahraa-sky-blue: #7DD3FC;
+  --color-zahraa-light-pink: #FBB6CE;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  @apply font-poppins bg-gradient-to-br from-zahraa-light-pink to-zahraa-sky-blue min-h-screen;
+}
