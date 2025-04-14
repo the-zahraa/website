@@ -1,22 +1,127 @@
-@import "tailwindcss";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-@theme {
-  --font-poppins: "Poppins", sans-serif;
-  --font-playfair: "Playfair Display", serif;
-  --color-zahraa-purple: #6B46C1;
-  --color-zahraa-violet: #9F7AEA;
-  --color-zahraa-sky-blue: #7DD3FC;
-  --color-zahraa-light-pink: #FBB6CE;
+/* Font Face for Local Raleway Files */
+@font-face {
+  font-family: "Raleway";
+  src: url("./fonts/Raleway-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@font-face {
+  font-family: "Raleway";
+  src: url("./fonts/Raleway-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
 }
 
 body {
-  @apply font-poppins bg-gradient-to-br from-zahraa-light-pink to-zahraa-sky-blue min-h-screen;
+  font-family: "Raleway", sans-serif;
+  background: linear-gradient(to bottom right, #f5d9ff, #d9e7ff);
+}
+
+/* Logo Styles (no animation, handled in Logo.jsx) */
+.logo-container {
+  position: relative;
+  display: inline-block;
+  color: white;
+}
+
+/* Book a Call Button Styles */
+.book-call-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: capitalize;
+  color: white;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.9), rgba(168, 85, 247, 0.7));
+  background-clip: padding-box;
+  border: 2px solid rgba(168, 85, 247, 1);
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.5);
+  overflow: hidden;
+}
+
+.book-call-button:hover {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 1), rgba(233, 213, 255, 0.8));
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.8);
+}
+
+/* Frame Assembly */
+.book-call-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  border-radius: 9999px;
+  animation: frameAssemble 1.5s ease-out forwards;
+}
+
+@keyframes frameAssemble {
+  0% {
+    border-color: transparent;
+  }
+  25% {
+    border-top-color: rgba(168, 85, 247, 1);
+  }
+  50% {
+    border-right-color: rgba(168, 85, 247, 1);
+  }
+  75% {
+    border-bottom-color: rgba(168, 85, 247, 1);
+  }
+  100% {
+    border-color: rgba(168, 85, 247, 1);
+  }
+}
+
+/* Grid Overlay */
+.book-call-button:hover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><path fill="none" stroke="rgba(168, 85, 247, 0.3)" stroke-width="0.5" d="M0,0 H10 M0,2 H10 M0,4 H10 M0,6 H10 M0,8 H10 M0,10 H10 M0,0 V10 M2,0 V10 M4,0 V10 M6,0 V10 M8,0 V10 M10,0 V10"/></svg>') repeat;
+  opacity: 0;
+  animation: gridFlash 0.3s ease-out forwards;
+}
+
+@keyframes gridFlash {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Services Glow Styles */
+.service-glow-grid {
+  position: absolute;
+  inset: -10px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="none" stroke="rgba(168, 85, 247, 0.2)" stroke-width="1" d="M0,0 H20 M0,5 H20 M0,10 H20 M0,15 H20 M0,20 H20 M0,0 V20 M5,0 V20 M10,0 V20 M15,0 V20 M20,0 V20"/></svg>') repeat;
+  opacity: 0.5;
+}
+
+.service-glow-contour {
+  position: absolute;
+  inset: -2px;
+  border: 1px solid transparent;
+  border-image: linear-gradient(
+    90deg,
+    rgba(168, 85, 247, 0),
+    rgba(168, 85, 247, 0.8),
+    rgba(168, 85, 247, 0)
+  ) 1;
+  opacity: 0;
 }

@@ -21,37 +21,38 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section className="relative px-6 py-20 max-w-5xl mx-auto min-h-screen">
-      <motion.h2
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="text-4xl sm:text-5xl font-playfair text-zahraa-purple mb-10 text-center"
+    <section className="relative px-6 py-28 min-h-screen md:mt-0 mt-40">
+      <motion.div
+        initial={{ opacity: 0, y: 40, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        className="max-w-4xl mx-auto bg-white/10 backdrop-blur-md p-8 rounded-xl shadow-md text-center"
       >
-        My Projects
-      </motion.h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project, index) => (
-          <motion.div
-            key={project.title}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: index * 0.2 }}
-            className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
-          >
-            <h3 className="text-xl font-playfair text-zahraa-purple mb-2">{project.title}</h3>
-            <p className="text-base font-poppins text-zahraa-violet mb-4">{project.description}</p>
-            <a
-              href={project.link}
-              className="text-zahraa-light-pink font-poppins text-sm hover:underline"
+        <h2 className="text-4xl sm:text-5xl text-zahraa-purple mb-10 tracking-tight">
+          My Projects
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              className="bg-white/20 backdrop-blur-sm p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center"
             >
-              View Project
-            </a>
-          </motion.div>
-        ))}
-      </div>
-      <FlowerAnimation style={{ top: '15%', left: '5%' }} />
+              <h3 className="text-xl text-zahraa-purple mb-2">{project.title}</h3>
+              <p className="text-base text-zahraa-violet mb-4">{project.description}</p>
+              <a
+                href={project.link}
+                className="text-zahraa-light-pink text-sm hover:underline"
+              >
+                View Project
+              </a>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+      <FlowerAnimation style={{ top: '10%', left: '5%' }} />
     </section>
   );
 }
-
