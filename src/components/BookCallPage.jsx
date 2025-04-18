@@ -2,18 +2,37 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import CalEmbed from '@calcom/embed-react';
 
+// Utility function to debounce
+const debounce = (func, wait) => {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(null, args), wait);
+  };
+};
+
 const BookCallPage = () => {
   const [widgetKey, setWidgetKey] = useState(Date.now());
+  const [lastWidth, setLastWidth] = useState(window.innerWidth);
 
-  // Refresh widget on resize
+  // Refresh widget only on significant resize
   useEffect(() => {
     const handleResize = () => {
-      setWidgetKey(Date.now()); // Force widget remount on resize
+      const currentWidth = window.innerWidth;
+      // Only update if width changes significantly (e.g., >10px)
+      // Ignore height changes (common during mobile scrolling)
+      if (Math.abs(currentWidth - lastWidth) > 10) {
+        setWidgetKey(Date.now()); // Force widget remount
+        setLastWidth(currentWidth);
+      }
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    // Debounce resize handler to limit calls
+    const debouncedHandleResize = debounce(handleResize, 200);
+
+    window.addEventListener('resize', debouncedHandleResize);
+    return () => window.removeEventListener('resize', debouncedHandleResize);
+  }, [lastWidth]);
 
   return (
     <div className="min-h-screen bg-white pt-6 pb-10 px-4 sm:px-6 lg:px-8">
@@ -44,7 +63,7 @@ const BookCallPage = () => {
         </h2>
         <div className="w-full relative">
           <CalEmbed
-            key={widgetKey} // Force remount on navigation/resize
+            key={widgetKey} // Controlled remount on significant resize
             calLink="zahraa-dev/30min" // Replace with your Cal.com event link
             style={{ width: '100%', minHeight: '500px' }}
             config={{
