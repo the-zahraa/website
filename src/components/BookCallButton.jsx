@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
+import { Link } from 'react-router-dom';
 
 // Animation variants for the button
 const buttonVariants = {
@@ -9,9 +10,8 @@ const buttonVariants = {
     y: 0,
     opacity: 1,
     transition: {
-      delay: 0.8,
+      delay: 0,
       duration: 0.3,
-      ease: 'easeOut',
     },
   },
   hover: {
@@ -31,7 +31,7 @@ const textVariants = {
   animate: {
     opacity: 1,
     transition: {
-      delay: 0, // Instant text
+      delay: 0,
       duration: 0.4,
       ease: 'easeOut',
     },
@@ -101,22 +101,21 @@ export default function BookCallButton({ onClick }) {
   }, []);
 
   return (
-    <motion.a
-      href="/book-a-call"
-      ref={buttonRef}
-      variants={buttonVariants}
-      initial="initial"
-      animate="animate"
-      whileHover="hover"
-      className="book-call-button"
-      onClick={onClick}
-    >
-      <motion.span variants={textVariants}>Book A Call</motion.span>
-      <div
-        ref={trailRef}
-        className="absolute w-4 h-4 bg-[#E9D5FF] rounded-full pointer-events-none"
-        style={{ filter: 'blur(4px)' }}
-      />
-    </motion.a>
+    <Link to="/book-a-call" ref={buttonRef}>
+      <motion.div
+        variants={buttonVariants}
+        initial="initial"
+        animate="animate"
+        whileHover="hover"
+        className="book-call-button"
+      >
+        <motion.span variants={textVariants}>Book A Call</motion.span>
+        <div
+          ref={trailRef}
+          className="absolute w-4 h-4 bg-[#E9D5FF] rounded-full pointer-events-none"
+          style={{ filter: 'blur(4px)' }}
+        />
+      </motion.div>
+    </Link>
   );
 }

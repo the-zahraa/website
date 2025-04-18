@@ -5,24 +5,30 @@
 /* Font Face for Local Raleway Files */
 @font-face {
   font-family: "Raleway";
-  src: url("./fonts/Raleway-Regular.ttf") format("truetype");
+  src: url("./assets/fonts/Raleway-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Raleway";
-  src: url("./fonts/Raleway-Bold.ttf") format("truetype");
+  src: url("./assets/fonts/Raleway-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 
 body {
   font-family: "Raleway", sans-serif;
-  background: linear-gradient(to bottom right, #f5d9ff, #d9e7ff);
+  background: transparent; /* Remove the gradient */
 }
 
-/* Logo Styles (no animation, handled in Logo.jsx) */
+/* Header Styles */
+.header {
+  position: relative;
+  z-index: 10;
+}
+
+/* Logo Styles */
 .logo-container {
   position: relative;
   display: inline-block;
@@ -49,7 +55,8 @@ body {
   overflow: hidden;
 }
 
-.book-call-button:hover {
+.book-call-button:hover,
+.book-call-button:focus {
   background: linear-gradient(135deg, rgba(168, 85, 247, 1), rgba(233, 213, 255, 0.8));
   box-shadow: 0 6px 20px rgba(168, 85, 247, 0.8);
 }
@@ -82,15 +89,17 @@ body {
   }
 }
 
-/* Grid Overlay */
-.book-call-button:hover::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 9999px;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><path fill="none" stroke="rgba(168, 85, 247, 0.3)" stroke-width="0.5" d="M0,0 H10 M0,2 H10 M0,4 H10 M0,6 H10 M0,8 H10 M0,10 H10 M0,0 V10 M2,0 V10 M4,0 V10 M6,0 V10 M8,0 V10 M10,0 V10"/></svg>') repeat;
-  opacity: 0;
-  animation: gridFlash 0.3s ease-out forwards;
+/* Grid Overlay (Desktop only) */
+@media (min-width: 768px) {
+  .book-call-button:hover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><path fill="none" stroke="rgba(168, 85, 247, 0.3)" stroke-width="0.5" d="M0,0 H10 M0,2 H10 M0,4 H10 M0,6 H10 M0,8 H10 M0,10 H10 M0,0 V10 M2,0 V10 M4,0 V10 M6,0 V10 M8,0 V10 M10,0 V10"/></svg>') repeat;
+    opacity: 0;
+    animation: gridFlash 0.3s ease-out forwards;
+  }
 }
 
 @keyframes gridFlash {
@@ -102,6 +111,76 @@ body {
   }
   100% {
     opacity: 0;
+  }
+}
+
+/* Mobile Nav */
+@media (max-width: 767px) {
+  .book-call-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  /* Mobile Nav Links */
+  .mobile-nav-link {
+    position: relative;
+    display: inline-block;
+    padding: 0.75rem 1.5rem; /* Bigger tap area */
+    overflow: visible;
+  }
+
+  /* Disable all underlines on mobile */
+  .mobile-nav-link,
+  .mobile-nav-link:active,
+  .mobile-nav-link:hover,
+  .mobile-nav-link .group span,
+  .mobile-nav-link .border-b {
+    border: none !important;
+  }
+
+  .mobile-nav-link .group span {
+    display: none !important;
+  }
+
+  /* Ripple effect on tap */
+  .mobile-nav-link::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    background: rgba(168, 85, 247, 0.4);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  /* Trigger ripple on touch */
+  .mobile-nav-link:active::before {
+    animation: ripple 0.3s ease-out forwards;
+  }
+
+  @keyframes ripple {
+    0% {
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0;
+    }
+  }
+}
+
+/* Desktop Nav */
+@media (min-width: 768px) {
+  /* Ensure single underline */
+  .group:active,
+  .group:hover {
+    border: none !important;
   }
 }
 

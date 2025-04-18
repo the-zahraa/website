@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import FlowerAnimation from '../components/FlowerAnimation';
 
 const projects = [
   {
@@ -52,7 +51,7 @@ export default function Projects() {
           ))}
         </div>
       </motion.div>
-      <FlowerAnimation style={{ top: '10%', left: '5%' }} />
+      
     </section>
   );
 }

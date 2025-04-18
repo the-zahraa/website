@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import FlowerAnimation from '../components/FlowerAnimation';
+
 
 const posts = [
   {
@@ -45,7 +45,7 @@ export default function Blog() {
           </motion.div>
         ))}
       </div>
-      <FlowerAnimation style={{ bottom: '10%', left: '5%' }} />
+      
     </section>
   );
 }
