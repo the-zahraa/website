@@ -101,7 +101,7 @@ export default function BookCallButton({ onClick }) {
   }, []);
 
   return (
-    <Link to="/book-a-call" ref={buttonRef}>
+    <Link to="/book-a-call" ref={buttonRef} onClick={onClick}>
       <motion.div
         variants={buttonVariants}
         initial="initial"
