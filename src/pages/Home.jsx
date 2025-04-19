@@ -21,13 +21,12 @@ const fadeInVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 };
 
-// Typing animation for tagline
-const typingVariants = {
-  hidden: { opacity: 0, width: 0 },
+// Simplified fade-in animation for the tagline
+const fadeInTagline = {
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    width: 'auto',
-    transition: { duration: 1.5, ease: 'easeOut', delay: 0.4 },
+    transition: { duration: 1, ease: 'easeOut', delay: 0.4 },
   },
 };
 
@@ -46,10 +45,10 @@ export default function Home() {
             Blockchain Solutions
           </motion.h2>
           <motion.p
-            variants={typingVariants}
+            variants={fadeInTagline}
             initial="hidden"
             animate="visible"
-            className="mt-4 text-lg md:text-2xl text-gray-600 inline-block overflow-hidden whitespace-normal md:whitespace-nowrap border-r-2 border-[#A855F7] animate-pulse"
+            className="mt-4 text-lg md:text-2xl text-gray-600 inline-block whitespace-normal md:whitespace-nowrap"
           >
             Smart Contracts | Auditing | Web3 Development
           </motion.p>
