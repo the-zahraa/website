@@ -104,17 +104,17 @@ const Footer = () => {
               <ul className="space-y-1 text-base">
                 <li>
                   <a
-                    href="mailto:your-email@example.com"
+                    href="mailto:zahraa.developer@gmail.com"
                     className="text-gray-400 hover:text-[#A855F7] transition-colors duration-300 block"
                   >
-                    Email: your-email@example.com
+                    zahraa.developer@gmail.com
                   </a>
                 </li>
                 <li className="flex space-x-4 mt-2">
                   {[
-                    { name: 'Telegram', url: 'https://t.me/your-telegram', icon: <FaTelegram /> },
-                    { name: 'X', url: 'https://x.com/your-x', icon: <XIcon className="w-5 h-5" /> },
-                    { name: 'GitHub', url: 'https://github.com/your-github', icon: <FaGithub /> },
+                    { name: 'Telegram', url: 'https://t.me/omegacandle', icon: <FaTelegram /> },
+                    { name: 'X', url: 'https://x.com/zuzu_crypto', icon: <XIcon className="w-5 h-5" /> },
+                    { name: 'GitHub', url: 'https://github.com/the-zahraa', icon: <FaGithub /> },
                     { name: 'LinkedIn', url: 'https://linkedin.com/in/your-linkedin', icon: <FaLinkedin /> },
                   ].map((social) => (
                     <motion.a

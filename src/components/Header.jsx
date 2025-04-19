@@ -96,17 +96,21 @@ export default function Header() {
                   onMouseLeave={() => setIsServicesOpen(false)}
                 >
                   <ServiceGlow>
-                    <motion.div
-                      whileHover={{
-                        scale: 1.1,
-                        transition: { duration: 0.3 },
-                      }}
-                      transition={{ type: 'spring', stiffness: 400 }}
-                      className="text-white font-bold text-sm tracking-widest capitalize cursor-pointer relative group"
+                    <NavLink
+                      to="/services"
+                      className="text-white font-bold text-sm tracking-widest capitalize transition-colors duration-300 relative group"
                     >
-                      Services
+                      <motion.span
+                        whileHover={{
+                          scale: 1.1,
+                          transition: { duration: 0.3 },
+                        }}
+                        transition={{ type: 'spring', stiffness: 400 }}
+                      >
+                        Services
+                      </motion.span>
                       <span className="absolute bottom-[-4px] left-0 w-0 h-[1px] bg-[#A855F7] transition-all duration-300 group-hover:w-full" />
-                    </motion.div>
+                    </NavLink>
                   </ServiceGlow>
                   <AnimatePresence>
                     {isServicesOpen && (
