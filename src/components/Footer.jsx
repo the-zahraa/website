@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaTelegram, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { CodeBracketIcon } from '@heroicons/react/24/outline'; // Added Heroicon import
 import XIcon from './XIcon'; // Import custom X icon
 import services from '../data/services';
 
@@ -153,9 +154,9 @@ const Footer = () => {
               </li>
               <li className="flex justify-center space-x-3 mt-2">
                 {[
-                  { name: 'Telegram', url: 'https://t.me/your-telegram', icon: <FaTelegram /> },
-                  { name: 'X', url: 'https://x.com/your-x', icon: <XIcon className="w-4 h-4" /> },
-                  { name: 'GitHub', url: 'https://github.com/your-github', icon: <FaGithub /> },
+                  { name: 'Telegram', url: 'https://t.me/Omegacandle', icon: <FaTelegram /> },
+                  { name: 'X', url: 'https://x.com/crypto_zuzu', icon: <XIcon className="w-4 h-4" /> },
+                  { name: 'GitHub', url: 'https://github.com/the-zahraa', icon: <FaGithub /> },
                   { name: 'LinkedIn', url: 'https://linkedin.com/in/your-linkedin', icon: <FaLinkedin /> },
                 ].map((social) => (
                   <motion.a
@@ -184,7 +185,9 @@ const Footer = () => {
           className="text-center text-gray-500 text-xs border-t border-gray-700 pt-3"
         >
           <p>© 2025 Zahraa.dev. All rights reserved.</p>
-          <p className="mt-1">Built with 💻 by Zahraa</p>
+          <p className="mt-1">
+            Built with <CodeBracketIcon className="inline-block w-4 h-4 text-[#A855F7] align-middle" /> by Zahraa
+          </p>
         </motion.div>
       </div>
     </motion.footer>

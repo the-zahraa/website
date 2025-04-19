@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   CodeBracketIcon,
@@ -56,7 +56,7 @@ const About = () => {
     {
       name: 'Web Development',
       icon: <CodeBracketIcon className="h-12 w-12 text-[#A855F7]" />,
-      description: 'Modern, responsive websites with React and Tailwind.',
+      description: 'Responsive, high-performance websites using a wide range of modern stacks.',
     },
     {
       name: 'UI/UX Design',
@@ -67,17 +67,17 @@ const About = () => {
 
   const timeline = [
     {
-      year: '2018',
+      year: '2020',
       title: 'Started Coding Journey',
       description: 'Began exploring web development with HTML, CSS, and JavaScript.',
     },
     {
-      year: '2020',
+      year: '2024',
       title: 'Mastered Blockchain',
       description: 'Built first smart contract on Ethereum, diving into Web3.',
     },
     {
-      year: '2023',
+      year: '2025',
       title: 'Launched Freelance Career',
       description: 'Helped clients worldwide with innovative tech solutions.',
     },
@@ -92,6 +92,7 @@ const About = () => {
           initial="initial"
           animate="animate"
           whileHover="hover"
+          whileTap={{ scale: 0.95 }}
           className="relative inline-flex items-center justify-center px-2 py-4 bg-[#A855F7] text-white rounded-full font-semibold text-lg shadow-md mx-auto max-w-[160px]"
         >
           <motion.span variants={textVariants} className="flex items-center justify-center">
@@ -109,6 +110,11 @@ const About = () => {
     );
   };
 
+  // Parallax effect for Hero section
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 300], [0, -50]);
+  const y2 = useTransform(scrollY, [0, 300], [0, 50]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-gray-50 pt-6 pb-10 px-4 sm:px-6 lg:px-8">
       {/* Hero Section */}
@@ -121,22 +127,42 @@ const About = () => {
         }}
         className="text-center mb-16 relative"
       >
+        {/* Background animations */}
+        <motion.div
+          className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <motion.div
+            className="absolute top-10 left-10 w-20 h-20 bg-[#A855F7] rounded-full opacity-10"
+            style={{ y: y1 }}
+            animate={{ scale: [1, 1.1, 1] }}
+            transition={{ repeat: Infinity, duration: 5 }}
+          />
+          <motion.div
+            className="absolute bottom-20 right-20 w-32 h-32 bg-[#9333EA] rounded-full opacity-10"
+            style={{ y: y2 }}
+            animate={{ scale: [1, 0.9, 1] }}
+            transition={{ repeat: Infinity, duration: 7 }}
+          />
+        </motion.div>
         <motion.h1
           variants={fadeInUp}
-          className="text-4xl sm:text-5xl font-bold text-gray-900"
+          className="text-4xl sm:text-5xl font-bold text-gray-900 relative z-10"
         >
-          Zahraa: Code Meets Creativity
+          Coding with Style
         </motion.h1>
         <motion.p
           variants={fadeInUp}
-          className="mt-3 text-xl sm:text-2xl text-gray-600"
+          className="mt-3 text-xl sm:text-2xl text-gray-600 relative z-10"
         >
-          Blockchain & Web Visionary
+          Architect of Decentralized Futures
         </motion.p>
         <motion.div
           variants={fadeInUp}
           whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
-          className="mt-6 max-w-lg mx-auto bg-white rounded-xl shadow-2xl p-6"
+          className="mt-6 max-w-lg mx-auto bg-white rounded-xl shadow-2xl p-6 relative z-10"
         >
           <p className="text-lg text-gray-500">
             I’m on a mission to transform ideas into impactful tech solutions with a spark of innovation.
@@ -184,17 +210,24 @@ const About = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {skills.map((skill, index) => {
             const skillRef = useRef(null);
-            const isInView = useInView(skillRef, { once: true, margin: '-50px' });
+            const isInView = useInView(skillRef, { once: true, margin: "-50px" });
             return (
               <motion.div
                 ref={skillRef}
                 key={index}
-                variants={fadeInUp}
+                variants={{
+                  hidden: { opacity: 0, y: 50 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { type: "spring", stiffness: 100, damping: 15 },
+                  },
+                }}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
                 whileHover={{
                   y: -10,
-                  boxShadow: '0 10px 20px rgba(168, 85, 247, 0.2)',
+                  boxShadow: "0 10px 20px rgba(168, 85, 247, 0.2)",
                   transition: { duration: 0.3 },
                 }}
                 className="bg-white rounded-xl shadow-md p-6 text-center"
@@ -219,49 +252,47 @@ const About = () => {
           My Journey
         </motion.h2>
         <div className="relative">
-          <motion.div
-            className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-[#A855F7] to-[#9333EA] z-0"
-            initial={{ height: 0 }}
-            animate={{ height: '100%' }}
-            transition={{ duration: 1.5, ease: 'easeOut' }}
-          />
-          {timeline.map((event, index) => {
-            const eventRef = useRef(null);
-            const isInView = useInView(eventRef, { once: true, margin: '-50px' });
-            return (
-              <motion.div
-                ref={eventRef}
-                key={index}
-                custom={index}
-                variants={timelineSlide}
-                initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
-                className={`flex items-center mb-12 ${index % 2 === 0 ? 'flex-row-reverse' : ''}`}
-              >
-                <div className="w-1/2 px-4">
+          {/* Vertical line for mobile */}
+          <div className="absolute left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-[#A855F7] to-[#9333EA] md:hidden" />
+          {/* Vertical line for desktop */}
+          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-[#A855F7] to-[#9333EA] h-full" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {timeline.map((event, index) => {
+              const eventRef = useRef(null);
+              const isInView = useInView(eventRef, { once: true, margin: "-50px" });
+              return (
+                <div
+                  key={index}
+                  ref={eventRef}
+                  className={`relative ${index % 2 === 0 ? "md:col-start-1" : "md:col-start-2"}`}
+                >
                   <motion.div
+                    variants={timelineSlide}
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
+                    custom={index}
                     whileHover={{
                       scale: 1.05,
-                      boxShadow: '0 8px 16px rgba(168, 85, 247, 0.2)',
+                      boxShadow: "0 8px 16px rgba(168, 85, 247, 0.2)",
                       transition: { duration: 0.3 },
                     }}
-                    className="bg-white rounded-xl shadow-lg p-5 relative"
+                    className="bg-white rounded-xl shadow-lg p-6 relative pl-12 md:pl-6"
                   >
                     <motion.div
-                      className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-[#A855F7] rounded-full z-10"
+                      className={`absolute w-4 h-4 bg-[#A855F7] rounded-full z-10 top-1/2 -translate-y-1/2 ${
+                        index % 2 === 0 ? "left-6 md:-right-2" : "left-6 md:-left-2"
+                      }`}
                       initial={{ scale: 0 }}
                       animate={{ scale: [1, 1.5, 1], transition: { duration: 0.8, repeat: 1 } }}
-                      style={{ [index % 2 === 0 ? 'left' : 'right']: '-2rem' }}
                     />
                     <h3 className="text-lg font-semibold text-gray-800">{event.title}</h3>
                     <p className="text-gray-600 mt-1">{event.description}</p>
                     <span className="text-[#A855F7] font-medium block mt-2">{event.year}</span>
                   </motion.div>
                 </div>
-                <div className="w-1/2"></div>
-              </motion.div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </section>
 
@@ -279,13 +310,13 @@ const About = () => {
           variants={fadeInUp}
           className="text-2xl font-bold text-gray-800 mb-4"
         >
-          Let’s Create Something Amazing
+          Ready to collaborate?
         </motion.h2>
         <motion.p
           variants={fadeInUp}
           className="text-lg font-normal text-gray-600 mb-6"
         >
-          Ready to turn your <span className="text-[#A855F7] font-medium">vision</span> into reality? Book a call today!
+          Turn your <span className="text-[#A855F7] font-medium">vision</span> into reality, Book a call today!
         </motion.p>
         <motion.div
           initial={{ scale: 0.95 }}
