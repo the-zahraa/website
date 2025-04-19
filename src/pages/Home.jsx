@@ -35,8 +35,8 @@ export default function Home() {
   return (
     <div className="pt-12">
       {/* Hero Section */}
-      <section className="min-h-[70vh] flex items-start justify-center bg-white text-gray-900 pt-6">
-        <div className="text-center">
+      <section className="min-h-screen flex items-center justify-center bg-white text-gray-900 pt-6 snap-start">
+        <div className="text-center px-4">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -49,7 +49,7 @@ export default function Home() {
             variants={typingVariants}
             initial="hidden"
             animate="visible"
-            className="mt-4 text-xl md:text-2xl text-gray-600 inline-block overflow-hidden whitespace-nowrap border-r-2 border-[#A855F7] animate-pulse"
+            className="mt-4 text-lg md:text-2xl text-gray-600 inline-block overflow-hidden whitespace-normal md:whitespace-nowrap border-r-2 border-[#A855F7] animate-pulse"
           >
             Smart Contracts | Auditing | Web3 Development
           </motion.p>
@@ -74,7 +74,7 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="py-16 bg-gray-900 text-white">
+      <section className="min-h-screen py-16 bg-gray-900 text-white snap-start flex items-center justify-center">
         <div className="max-w-7xl mx-auto px-6">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -129,7 +129,7 @@ export default function Home() {
       </section>
 
       {/* Portfolio Section */}
-      <section className="py-16 bg-white text-gray-900">
+      <section className="min-h-screen py-16 bg-white text-gray-900 snap-start flex items-center justify-center">
         <div className="max-w-7xl mx-auto px-6">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -167,7 +167,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 bg-gray-900 text-white">
+      <section className="min-h-screen py-16 bg-gray-900 text-white snap-start flex items-center justify-center">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
