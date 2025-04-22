@@ -69,7 +69,7 @@ const Services = () => {
   return (
     <div className="snap-y snap-mandatory pt-16 box-border h-screen overflow-y-scroll overscroll-y-contain">
       {/* Hero Section */}
-      <section className="min-h-[auto] md:min-h-[85vh] snap-start flex items-center justify-center bg-white mb-10">
+      <section className="min-h-screen snap-start flex items-center justify-center bg-white">
         <div className="text-center px-4 py-8">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -91,8 +91,8 @@ const Services = () => {
       </section>
 
       {/* Smart Contract Development */}
-      <section className="min-h-[auto] md:min-h-[85vh] snap-start flex items-center justify-center bg-white mb-10">
-        <div className="max-w-7xl mx-auto px-6 w-full">
+      <section className="min-h-screen snap-start flex items-center justify-center bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <ServiceSection
             id="smart-contract-development"
             icon={<LockClosedIcon className="w-10 h-10 text-[#A855F7]" />}
@@ -114,8 +114,8 @@ const Services = () => {
       </section>
 
       {/* Smart Contract Auditing */}
-      <section className="min-h-[auto] md:min-h-[85vh] snap-start flex items-center justify-center bg-white mb-10">
-        <div className="max-w-7xl mx-auto px-6 w-full">
+      <section className="min-h-screen snap-start flex items-center justify-center bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <ServiceSection
             id="smart-contract-auditing"
             icon={<ShieldCheckIcon className="w-10 h-10 text-[#A855F7]" />}
@@ -137,8 +137,8 @@ const Services = () => {
       </section>
 
       {/* Web Design */}
-      <section className="min-h-[auto] md:min-h-[85vh] snap-start flex items-center justify-center bg-white mb-10">
-        <div className="max-w-7xl mx-auto px-6 w-full">
+      <section className="min-h-screen snap-start flex items-center justify-center bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <ServiceSection
             id="web-design"
             icon={<PaintBrushIcon className="w-10 h-10 text-[#A855F7]" />}
@@ -160,8 +160,8 @@ const Services = () => {
       </section>
 
       {/* Web Development */}
-      <section className="min-h-[auto] md:min-h-[85vh] snap-start flex items-center justify-center bg-white mb-10">
-        <div className="max-w-7xl mx-auto px-6 w-full">
+      <section className="min-h-screen snap-start flex items-center justify-center bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <ServiceSection
             id="web-development"
             icon={<CodeBracketIcon className="w-10 h-10 text-[#A855F7]" />}
@@ -183,8 +183,8 @@ const Services = () => {
       </section>
 
       {/* Smart Automation Bots */}
-      <section className="min-h-[auto] md:min-h-[85vh] snap-start flex items-center justify-center bg-white mb-10">
-        <div className="max-w-7xl mx-auto px-6 w-full">
+      <section className="min-h-screen snap-start flex items-center justify-center bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <ServiceSection
             id="smart-automation-bots"
             icon={<ChatBubbleLeftRightIcon className="w-10 h-10 text-[#A855F7]" />}
@@ -206,8 +206,8 @@ const Services = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="min-h-[auto] md:min-h-[85vh] snap-start flex items-center justify-center bg-gray-900 text-white">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+      <section className="min-h-screen snap-start flex items-center justify-center bg-gray-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center py-8 sm:py-12">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -220,7 +220,7 @@ const Services = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-gray-400 mb-8"
+            className="text-base sm:text-xl text-gray-400 mb-8"
           >
             Let’s discuss your project and find the perfect solution.
           </motion.p>
@@ -234,12 +234,50 @@ const Services = () => {
                 variants={glowVariants}
                 whileHover="hover"
                 whileTap="tap"
-                className="inline-block bg-[#A855F7] text-white font-bold px-6 py-3 rounded-full text-lg tracking-widest uppercase transition-all duration-300"
+                className="inline-block bg-[#A855F7] text-white font-bold px-6 py-3 sm:px-8 sm:py-4 text-lg sm:text-xl tracking-widest uppercase transition-all duration-300 shadow-[0_0_5px_rgba(168,85,247,0.3)]"
               >
                 Book a Call
               </motion.button>
             </Link>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Footer Section */}
+      <section className="min-h-screen snap-start flex items-center justify-center bg-gray-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center py-8 sm:py-12">
+          <h3 className="text-2xl font-bold text-[#A855F7] mb-4">Your Name</h3>
+          <nav className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mb-6">
+            <Link to="/" className="text-base sm:text-lg text-gray-400 hover:text-[#A855F7] transition-colors">
+              Home
+            </Link>
+            <Link to="/services" className="text-base sm:text-lg text-gray-400 hover:text-[#A855F7] transition-colors">
+              Services
+            </Link>
+            <Link to="/book-a-call" className="text-base sm:text-lg text-gray-400 hover:text-[#A855F7] transition-colors">
+              Book a Call
+            </Link>
+          </nav>
+          <p className="text-base sm:text-lg text-gray-400 mb-6">
+            Contact: <a href="mailto:your.email@example.com" className="hover:text-[#A855F7] transition-colors">your.email@example.com</a>
+          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <Link to="/book-a-call">
+              <motion.button
+                variants={glowVariants}
+                whileHover="hover"
+                whileTap="tap"
+                className="inline-block bg-[#A855F7] text-white font-bold px-6 py-3 sm:px-8 sm:py-4 text-lg sm:text-xl tracking-widest uppercase transition-all duration-300 shadow-[0_0_5px_rgba(168,85,247,0.3)]"
+              >
+                Book a Call
+              </motion.button>
+            </Link>
+          </motion.div>
+          <p className="text-sm text-gray-500 mt-6">© 2025 Your Name. All rights reserved.</p>
         </div>
       </section>
     </div>
