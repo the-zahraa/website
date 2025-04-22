@@ -67,9 +67,9 @@ const Services = () => {
   }, [location]);
 
   return (
-    <div className="snap-y snap-mandatory pt-16 box-border">
+    <div className="snap-y snap-mandatory pt-16 box-border h-screen overflow-y-scroll overscroll-y-contain">
       {/* Hero Section */}
-      <section className="min-h-[85vh] flex items-center justify-center bg-white text-gray-900 snap-start mb-10">
+      <section className="min-h-[auto] md:min-h-[85vh] snap-start flex items-center justify-center bg-white mb-10">
         <div className="text-center px-4 py-8">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -83,7 +83,7 @@ const Services = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-            className="mt-4 text-lg md:text-2xl text-gray-600 max-w-2xl mx-auto sm:text-xl xs:text-base"
+            className="mt-4 text-lg md:text-2xl text-gray-600 max-w-2xl mx-auto sm:text-xl text-base"
           >
             Tailored blockchain and web solutions for your digital needs.
           </motion.p>
@@ -91,127 +91,122 @@ const Services = () => {
       </section>
 
       {/* Smart Contract Development */}
-      <section className="min-h-[85vh] flex items-center justify-center bg-white snap-start mb-10">
+      <section className="min-h-[auto] md:min-h-[85vh] snap-start flex items-center justify-center bg-white mb-10">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="smart-contract-development"
             icon={<LockClosedIcon className="w-10 h-10 text-[#A855F7]" />}
             title="Smart Contract Development"
             tagline="Power your blockchain vision with secure contracts."
-            description="I build efficient, secure smart contracts using Solidity to drive your blockchain projects, from DeFi to NFTs."
+            description="I build efficient, secure smart contracts using Solidity to drive your blockchain projects."
             benefits={[
-              'Unlock new revenue streams with DeFi solutions.',
-              'Protect assets with gas-optimized, secure code.',
-              'Launch innovative projects with custom contracts.',
+              'Unlock revenue with DeFi solutions.',
+              'Protect assets with secure code.',
+              'Launch innovative projects.',
             ]}
             whatWeBuild={[
-              'DeFi protocols for lending, staking, and yield farming.',
-              'NFT marketplaces and collectible platforms.',
-              'Decentralized governance systems for DAOs.',
-              'Token contracts for ICOs and utility tokens.',
+              'DeFi protocols for lending and staking.',
+              'NFT marketplaces and collectibles.',
+              'Token contracts for ICOs.',
             ]}
           />
         </div>
       </section>
 
       {/* Smart Contract Auditing */}
-      <section className="min-h-[85vh] flex items-center justify-center bg-white snap-start mb-10">
+      <section className="min-h-[auto] md:min-h-[85vh] snap-start flex items-center justify-center bg-white mb-10">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="smart-contract-auditing"
             icon={<ShieldCheckIcon className="w-10 h-10 text-[#A855F7]" />}
             title="Smart Contract Auditing"
             tagline="Safeguard your blockchain projects with rigorous audits."
-            description="I provide comprehensive audits to ensure your smart contracts are secure, reliable, and free from vulnerabilities."
+            description="I provide comprehensive audits to ensure your smart contracts are secure and reliable."
             benefits={[
-              'Protect user funds with bulletproof security.',
-              'Build trust with transparent audit reports.',
-              'Minimize risks with actionable recommendations.',
+              'Protect funds with bulletproof security.',
+              'Build trust with transparent reports.',
+              'Minimize risks with recommendations.',
             ]}
             whatWeBuild={[
-              'Detailed audit reports for DeFi and NFT contracts.',
-              'Security assessments for DAO governance systems.',
-              'Vulnerability fixes for token and staking contracts.',
-              'Compliance checks for regulatory alignment.',
+              'Audit reports for DeFi and NFT contracts.',
+              'Security assessments for DAOs.',
+              'Vulnerability fixes for tokens.',
             ]}
           />
         </div>
       </section>
 
       {/* Web Design */}
-      <section className="min-h-[85vh] flex items-center justify-center bg-white snap-start mb-10">
+      <section className="min-h-[auto] md:min-h-[85vh] snap-start flex items-center justify-center bg-white mb-10">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="web-design"
             icon={<PaintBrushIcon className="w-10 h-10 text-[#A855F7]" />}
             title="Web Design"
             tagline="Design stunning websites that captivate and convert."
-            description="I create responsive, user-centric designs that elevate your brand and deliver seamless experiences to engage your audience."
+            description="I create responsive, user-centric designs to elevate your brand and engage your audience."
             benefits={[
               'Boost brand credibility with custom designs.',
               'Drive conversions with intuitive UI/UX.',
-              'Ensure accessibility across all devices.',
+              'Ensure accessibility across devices.',
             ]}
             whatWeBuild={[
-              'Sleek portfolio websites for creatives and agencies.',
-              'Engaging landing pages for product launches.',
-              'Modern e-commerce storefronts with intuitive navigation.',
-              'Corporate websites that reflect your brand’s authority.',
+              'Sleek portfolio websites for creatives.',
+              'Engaging landing pages for launches.',
+              'Modern e-commerce storefronts.',
             ]}
           />
         </div>
       </section>
 
       {/* Web Development */}
-      <section className="min-h-[85vh] flex items-center justify-center bg-white snap-start mb-10">
+      <section className="min-h-[auto] md:min-h-[85vh] snap-start flex items-center justify-center bg-white mb-10">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="web-development"
             icon={<CodeBracketIcon className="w-10 h-10 text-[#A855F7]" />}
             title="Web Development"
             tagline="Build fast, scalable websites that perform."
-            description="I develop robust, secure websites and apps using modern technologies like React and Tailwind CSS to meet your business goals."
+            description="I develop robust, secure websites and apps using modern technologies to meet your goals."
             benefits={[
-              'Accelerate growth with high-performance websites.',
-              'Seamlessly integrate APIs and third-party tools.',
-              'Future-proof your site with scalable architecture.',
+              'Accelerate growth with high-performance sites.',
+              'Integrate APIs and third-party tools.',
+              'Future-proof with scalable architecture.',
             ]}
             whatWeBuild={[
-              'Dynamic e-commerce platforms with payment gateways.',
-              'Interactive web apps for startups and enterprises.',
-              'Content management systems for easy updates.',
-              'Custom dashboards for data-driven insights.',
+              'Dynamic e-commerce platforms.',
+              'Interactive web apps for startups.',
+              'Custom dashboards for insights.',
             ]}
           />
         </div>
       </section>
 
       {/* Smart Automation Bots */}
-      <section className="min-h-[85vh] flex items-center justify-center bg-white snap-start mb-10">
+      <section className="min-h-[auto] md:min-h-[85vh] snap-start flex items-center justify-center bg-white mb-10">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="smart-automation-bots"
             icon={<ChatBubbleLeftRightIcon className="w-10 h-10 text-[#A855F7]" />}
             title="Smart Automation Bots"
             tagline="Streamline tasks and engage users with intelligent bots."
-            description="I create smart bots to automate workflows, enhance user engagement, and provide seamless communication for your business."
+            description="I create smart bots to automate workflows and enhance user engagement for your business."
             benefits={[
               'Save time with automated workflows.',
-              'Boost user retention with interactive features.',
-              'Scale customer support with 24/7 availability.',
+              'Boost retention with interactive features.',
+              'Scale support with 24/7 availability.',
             ]}
             whatWeBuild={[
               'Customer support bots for instant responses.',
-              'E-commerce bots for product browsing and checkout.',
-              'Community engagement bots for groups and channels.',
-              'Notification bots for real-time updates and alerts.',
+              'E-commerce bots for browsing and checkout.',
+              'Notification bots for real-time updates.',
             ]}
           />
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="min-h-[85vh] flex items-center justify-center bg-gray-900 text-white snap-start">
+      <section className="min-h-[auto] md:min-h-[85vh] snap-start flex items-center justify-center bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -264,22 +259,22 @@ const ServiceSection = ({ id, icon, title, tagline, description, benefits, whatW
       animate={isInView ? 'visible' : 'hidden'}
       whileHover="hover"
       variants={cardVariants}
-      className="bg-gradient-to-br from-white to-purple-50 rounded-2xl p-8 w-full max-w-3xl mx-auto border-2 border-transparent transition-all duration-300"
+      className="bg-gradient-to-br from-white to-purple-50 rounded-2xl p-4 sm:p-8 w-full max-w-3xl mx-auto border-2 border-transparent transition-all duration-300"
     >
       <div className="flex items-center gap-4 mb-4">
         {icon}
         <h2 className="text-3xl font-bold tracking-tight text-[#A855F7] uppercase">{title}</h2>
       </div>
-      <p className="text-lg text-gray-600 italic mb-6">{tagline}</p>
-      <p className="text-gray-600 text-lg mb-6">{description}</p>
-      <h3 className="text-xl font-semibold text-gray-900 mb-3">What You Get</h3>
-      <ul className="list-disc list-inside text-gray-600 mb-6 space-y-2">
+      <p className="text-base sm:text-lg text-gray-600 italic mb-4 sm:mb-6">{tagline}</p>
+      <p className="text-base sm:text-lg text-gray-600 mb-4 sm:mb-6">{description}</p>
+      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3">What You Get</h3>
+      <ul className="list-disc list-inside text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 space-y-1 sm:space-y-2">
         {benefits.map((benefit, index) => (
           <li key={index}>{benefit}</li>
         ))}
       </ul>
-      <h3 className="text-xl font-semibold text-gray-900 mb-3">What We Can Build</h3>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-600 mb-8">
+      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3">What We Can Build</h3>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base text-gray-600 mb-6 sm:mb-8">
         {whatWeBuild.map((item, index) => (
           <li key={index} className="flex items-start">
             <span className="mr-2 text-[#A855F7]">✓</span>
@@ -293,7 +288,7 @@ const ServiceSection = ({ id, icon, title, tagline, description, benefits, whatW
             variants={glowVariants}
             whileHover="hover"
             whileTap="tap"
-            className="inline-block bg-[#A855F7] text-white font-bold px-8 py-4 rounded-full text-xl tracking-widest uppercase transition-all duration-300 shadow-[0_0_5px_rgba(168,85,247,0.3)]"
+            className="inline-block bg-[#A855F7] text-white font-bold px-6 py-3 sm:px-8 sm:py-4 text-lg sm:text-xl tracking-widest uppercase transition-all duration-300 shadow-[0_0_5px_rgba(168,85,247,0.3)]"
           >
             Get a Quote
           </motion.button>
