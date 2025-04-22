@@ -32,10 +32,10 @@ const fadeInTagline = {
 
 export default function Home() {
   return (
-    <div className="pt-12">
+    <div> {/* Removed pt-12 */}
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center bg-white text-gray-900 pt-6 snap-start">
-        <div className="text-center px-4">
+      <section className="min-h-screen flex items-center justify-center bg-white text-gray-900 pt-12 snap-start relative">
+        <div className="text-center px-4 relative z-10">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -189,7 +189,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <Link to="/book-a-call">
+            <Link to="/services">
               <motion.button
                 variants={glowVariants}
                 whileHover="hover"

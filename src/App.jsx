@@ -11,15 +11,17 @@ export default function App() {
   return (
     <Router>
       <Header />
-      <main className="mt-16 min-h-screen bg-transparent">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/book-a-call" element={<BookCallPage />} />
-        </Routes>
-      </main>
+      <div className="snap-y snap-mandatory min-h-screen">
+        <main className="mt-16 bg-transparent">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/book-a-call" element={<BookCallPage />} />
+          </Routes>
+        </main>
+      </div>
       <Footer />
     </Router>
   );

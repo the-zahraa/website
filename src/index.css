@@ -205,3 +205,29 @@ body {
   opacity: 0;
 }
 
+html {
+  
+  scroll-behavior: smooth;
+  overflow-y: scroll; /* Ensures smooth scrolling */
+}
+
+/* index.css */
+@layer components {
+  .gradient-border {
+    position: relative;
+    border: none;
+  }
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(to right, #A855F7, #9333EA);
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+    border-radius: 12px;
+    z-index: -1;
+  }
+  .gradient-border:hover::before {
+    opacity: 1;
+  }
+}

@@ -46,6 +46,16 @@ const About = () => {
     },
   };
 
+  // Interactive hover variants for the box
+  const boxHoverVariants = {
+    initial: { scale: 1, boxShadow: '0 5px 15px rgba(0, 0, 0, 0.1)' },
+    hover: {
+      scale: 1.03,
+      boxShadow: '0 10px 25px rgba(168, 85, 247, 0.3)',
+      transition: { duration: 0.3, ease: 'easeOut' },
+    },
+  };
+
   // Sample data (replace with your details)
   const skills = [
     {
@@ -135,8 +145,10 @@ const About = () => {
         </motion.p>
         <motion.div
           variants={fadeInUp}
-          whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
-          className="mt-6 max-w-lg mx-auto bg-white rounded-xl shadow-2xl p-6"
+          initial="initial"
+          whileHover="hover"
+          variants={boxHoverVariants}
+          className="mt-6 max-w-2xl mx-auto bg-gradient-to-br from-white to-gray-100 rounded-xl p-8 border-2 border-[#A855F7] transition-all duration-300"
         >
           <p className="text-lg text-gray-500">
             I’m on a mission to transform ideas into impactful tech solutions with a spark of innovation.
@@ -152,19 +164,24 @@ const About = () => {
           hidden: { opacity: 0 },
           visible: { opacity: 1, transition: { staggerChildren: 0.3 } },
         }}
-        className="max-w-4xl mx-auto mb-16"
+        className="max-w-2xl mx-auto mb-16"
       >
         <motion.h2
           variants={fadeInUp}
           className="text-3xl font-semibold text-gray-800 mb-6 text-center"
         >
-          Who I Am
+          Who Am I?
         </motion.h2>
         <motion.div
           variants={fadeInUp}
-          whileHover={{ rotate: 1, transition: { duration: 0.3 } }}
-          className="bg-white rounded-xl shadow-lg p-6 sm:p-8 border-l-4 border-[#A855F7]"
+          initial="initial"
+          whileHover="hover"
+          variants={boxHoverVariants}
+          className="bg-gradient-to-br from-white to-gray-100 rounded-xl p-6 sm:p-8 border-2 border-[#A855F7] transition-all duration-300"
         >
+          <p className="text-gray-800 font-medium mb-2">
+            I’m Zahraa, a blockchain and web developer crafting secure, scalable solutions.
+          </p>
           <p className="text-gray-600 leading-relaxed">
             From my first line of code to launching global projects, I’ve been driven by curiosity and creativity. Specializing in <span className="text-[#A855F7] font-medium">blockchain</span> and <span className="text-[#A855F7] font-medium">web development</span>, I build solutions that are secure, scalable, and stunning. My goal? To empower you with tech that sparks change.
           </p>
