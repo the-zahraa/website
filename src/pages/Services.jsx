@@ -69,7 +69,7 @@ const Services = () => {
   return (
     <div className="snap-y snap-mandatory pt-16 box-border h-auto overflow-y-scroll overscroll-y-contain">
       {/* Hero Section */}
-      <section className="min-h-screen snap-start flex items-center justify-center bg-white">
+      <section className="min-h-screen snap-start flex items-center justify-center bg-white mb-2">
         <div className="text-center px-4 py-8">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -91,7 +91,7 @@ const Services = () => {
       </section>
 
       {/* Smart Contract Development */}
-      <section className="min-h-screen snap-start flex items-center justify-center bg-white">
+      <section className="min-h-screen snap-start flex items-center justify-center bg-white mb-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <ServiceSection
             id="smart-contract-development"
@@ -114,7 +114,7 @@ const Services = () => {
       </section>
 
       {/* Smart Contract Auditing */}
-      <section className="min-h-screen snap-start flex items-center justify-center bg-white">
+      <section className="min-h-screen snap-start flex items-center justify-center bg-white mb-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <ServiceSection
             id="smart-contract-auditing"
@@ -137,7 +137,7 @@ const Services = () => {
       </section>
 
       {/* Web Design */}
-      <section className="min-h-screen snap-start flex items-center justify-center bg-white">
+      <section className="min-h-screen snap-start flex items-center justify-center bg-white mb-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <ServiceSection
             id="web-design"
@@ -160,7 +160,7 @@ const Services = () => {
       </section>
 
       {/* Web Development */}
-      <section className="min-h-screen snap-start flex items-center justify-center bg-white">
+      <section className="min-h-screen snap-start flex items-center justify-center bg-white mb-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <ServiceSection
             id="web-development"
@@ -183,7 +183,7 @@ const Services = () => {
       </section>
 
       {/* Smart Automation Bots */}
-      <section className="min-h-screen snap-start flex items-center justify-center bg-white">
+      <section className="min-h-screen snap-start flex items-center justify-center bg-white mb-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <ServiceSection
             id="smart-automation-bots"
@@ -206,7 +206,7 @@ const Services = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="min-h-screen snap-start flex items-center justify-center bg-gray-900 text-white">
+      <section className="min-h-screen snap-start flex items-center justify-center bg-gray-900 text-white mb-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center py-8 sm:py-12">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
