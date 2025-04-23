@@ -10,6 +10,10 @@ module.exports = {
         'zahraa-light-pink': '#F9A8D4',     // Kept for body gradient
         'zahraa-sky-blue': '#87CEEB',       // Kept for body gradient
       },
+      fontSize: {
+        '2.5xl': '1.75rem', // 28px
+        '3.5xl': '2.125rem', // 34px
+      },
     },
   },
   plugins: [],
