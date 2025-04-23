@@ -9,7 +9,7 @@ import {
   ShieldCheckIcon,
 } from '@heroicons/react/24/outline';
 
-// Animation variants for buttons (unchanged)
+// Animation variants for buttons
 const glowVariants = {
   hover: {
     boxShadow: '0 0 15px rgba(168, 85, 247, 0.5)',
@@ -22,7 +22,7 @@ const glowVariants = {
   },
 };
 
-// Animation variants for cards (ServiceSection) (unchanged)
+// Animation variants for cards (ServiceSection)
 const cardVariants = {
   initial: {
     y: 0,
@@ -41,7 +41,7 @@ const cardVariants = {
   },
 };
 
-// Animation variants for fade-in (unchanged)
+// Animation variants for fade-in
 const fadeInVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut', delay: 0.2 } },
@@ -50,7 +50,7 @@ const fadeInVariants = {
 const Services = () => {
   const location = useLocation();
 
-  // Smooth scrolling to section on page load with header offset (unchanged)
+  // Smooth scrolling to section on page load with header offset
   useEffect(() => {
     if (location.hash) {
       const sectionId = location.hash.replace('#', '');
@@ -69,12 +69,10 @@ const Services = () => {
   return (
     <div
       className="snap-y snap-mandatory pt-16 box-border scroll-smooth overscroll-y-contain touch-pan-y"
-      style={{ '--snap-timing': 'ease-out' }} // Added for smoother snap transitions
+      style={{ scrollPaddingTop: '64px' }} // Ensures snap points account for header offset
     >
-      {/* Enhanced scroll behavior: overscroll-y-contain, touch-pan-y, custom snap timing */}
       {/* Hero Section */}
-      <section className="min-h-screen sm:min-h-[85vh] flex items-center justify-center bg-white text-gray-900 snap-start sm:mb-10 scroll-snap-align-start">
-        {/* Changed to min-h-screen on mobile, sm:mb-10, added scroll-snap-align-start */}
+      <section className="h-screen flex items-center justify-center bg-white text-gray-900 snap-start">
         <div className="text-center px-4 py-8">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -96,7 +94,7 @@ const Services = () => {
       </section>
 
       {/* Smart Contract Development */}
-      <section className="min-h-screen sm:min-h-[85vh] flex items-center justify-center bg-white snap-start sm:mb-10 scroll-snap-align-start">
+      <section className="h-screen flex items-center justify-center bg-white snap-start">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="smart-contract-development"
@@ -114,7 +112,7 @@ const Services = () => {
       </section>
 
       {/* Smart Contract Auditing */}
-      <section className="min-h-screen sm:min-h-[85vh] flex items-center justify-center bg-white snap-start sm:mb-10 scroll-snap-align-start">
+      <section className="h-screen flex items-center justify-center bg-white snap-start">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="smart-contract-auditing"
@@ -132,7 +130,7 @@ const Services = () => {
       </section>
 
       {/* Web Design */}
-      <section className="min-h-screen sm:min-h-[85vh] flex items-center justify-center bg-white snap-start sm:mb-10 scroll-snap-align-start">
+      <section className="h-screen flex items-center justify-center bg-white snap-start">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="web-design"
@@ -150,7 +148,7 @@ const Services = () => {
       </section>
 
       {/* Web Development */}
-      <section className="min-h-screen sm:min-h-[85vh] flex items-center justify-center bg-white snap-start sm:mb-10 scroll-snap-align-start">
+      <section className="h-screen flex items-center justify-center bg-white snap-start">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="web-development"
@@ -168,7 +166,7 @@ const Services = () => {
       </section>
 
       {/* Smart Automation Bots */}
-      <section className="min-h-screen sm:min-h-[85vh] flex items-center justify-center bg-white snap-start sm:mb-10 scroll-snap-align-start">
+      <section className="h-screen flex items-center justify-center bg-white snap-start">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="smart-automation-bots"
@@ -186,8 +184,7 @@ const Services = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="min-h-screen sm:min-h-[85vh] flex items-center justify-center bg-gray-900 text-white snap-start scroll-snap-align-start">
-        {/* Changed to min-h-screen on mobile, added scroll-snap-align-start */}
+      <section className="h-screen flex items-center justify-center bg-gray-900 text-white snap-start">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -231,9 +228,9 @@ const Services = () => {
 const ServiceSection = ({ id, icon, title, description, whatWeBuild }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
-  const [isTapped, setIsTapped] = useState(false); // Unchanged tap state
+  const [isTapped, setIsTapped] = useState(false); // State for tap toggle
 
-  // Toggle hover effect on tap (unchanged)
+  // Toggle hover effect on tap
   const handleTap = () => {
     setIsTapped(!isTapped);
   };
