@@ -67,15 +67,15 @@ const Services = () => {
   }, [location]);
 
   return (
-    <div className="snap-y snap-mandatory pt-16 box-border h-auto overflow-y-scroll overscroll-y-contain">
+    <div className="snap-y snap-mandatory pt-16 box-border h-auto overflow-y-scroll overscroll-y-contain" style={{ boxSizing: 'border-box' }}>
       {/* Hero Section */}
       <section className="h-screen snap-start flex items-center justify-center bg-white mb-0" style={{ scrollSnapStop: 'always' }}>
-        <div className="text-center px-4 py-4">
+        <div className="text-center px-4 py-2 sm:py-4">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="text-4xl md:text-6xl font-bold tracking-tight text-[#A855F7]"
+            className="text-4xl sm:text-6xl font-bold tracking-tight text-[#A855F7]"
           >
             Comprehensive Blockchain & Web Solutions
           </motion.h1>
@@ -83,7 +83,7 @@ const Services = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-            className="mt-2 text-sm sm:text-base text-gray-600 max-w-2xl mx-auto"
+            className="mt-2 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto"
           >
             Tailored blockchain and web solutions for your digital needs.
           </motion.p>
@@ -95,7 +95,7 @@ const Services = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <ServiceSection
             id="smart-contract-development"
-            icon={<LockClosedIcon className="w-8 h-8 text-[#A855F7]" />}
+            icon={<LockClosedIcon className="w-6 h-6 sm:w-8 h-8 text-[#A855F7]" />}
             title="Smart Contract Development"
             tagline="Power your blockchain vision with secure contracts."
             description="I build efficient, secure smart contracts using Solidity to drive your blockchain projects."
@@ -118,7 +118,7 @@ const Services = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <ServiceSection
             id="smart-contract-auditing"
-            icon={<ShieldCheckIcon className="w-8 h-8 text-[#A855F7]" />}
+            icon={<ShieldCheckIcon className="w-6 h-6 sm:w-8 h-8 text-[#A855F7]" />}
             title="Smart Contract Auditing"
             tagline="Safeguard your blockchain projects with rigorous audits."
             description="I provide comprehensive audits to ensure your smart contracts are secure and reliable."
@@ -141,11 +141,11 @@ const Services = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <ServiceSection
             id="web-design"
-            icon={<PaintBrushIcon className="w-8 h-8 text-[#A855F7]" />}
+            icon={<PaintBrushIcon className="w-6 h-6 sm:w-8 h-8 text-[#A855F7]" />}
             title="Web Design"
             tagline="Design stunning websites that captivate and convert."
             description="I create responsive, user-centric designs to elevate your brand and engage your audience."
-            benefits={[
+            benefits=[
               'Boost brand credibility with custom designs.',
               'Drive conversions with intuitive UI/UX.',
               'Ensure accessibility across devices.',
@@ -164,7 +164,7 @@ const Services = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <ServiceSection
             id="web-development"
-            icon={<CodeBracketIcon className="w-8 h-8 text-[#A855F7]" />}
+            icon={<CodeBracketIcon className="w-6 h-6 sm:w-8 h-8 text-[#A855F7]" />}
             title="Web Development"
             tagline="Build fast, scalable websites that perform."
             description="I develop robust, secure websites and apps using modern technologies to meet your goals."
@@ -187,7 +187,7 @@ const Services = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <ServiceSection
             id="smart-automation-bots"
-            icon={<ChatBubbleLeftRightIcon className="w-8 h-8 text-[#A855F7]" />}
+            icon={<ChatBubbleLeftRightIcon className="w-6 h-6 sm:w-8 h-8 text-[#A855F7]" />}
             title="Smart Automation Bots"
             tagline="Streamline tasks and engage users with intelligent bots."
             description="I create smart bots to automate workflows and enhance user engagement for your business."
@@ -207,12 +207,12 @@ const Services = () => {
 
       {/* CTA Section */}
       <section className="h-screen snap-start flex items-center justify-center bg-gray-900 text-white mb-0" style={{ scrollSnapStop: 'always' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center py-4 sm:py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center py-2 sm:py-4">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-3xl sm:text-4xl font-bold tracking-tight uppercase mb-4 sm:mb-6"
+            className="text-4xl font-bold tracking-tight uppercase mb-2 sm:mb-4"
           >
             Ready to Transform Your Ideas?
           </motion.h2>
@@ -220,7 +220,7 @@ const Services = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-sm sm:text-lg text-gray-400 mb-4 sm:mb-8"
+            className="text-base sm:text-lg text-gray-400 mb-2 sm:mb-4"
           >
             Let’s discuss your project and find the perfect solution.
           </motion.p>
@@ -234,7 +234,7 @@ const Services = () => {
                 variants={glowVariants}
                 whileHover="hover"
                 whileTap="tap"
-                className="inline-block bg-[#A855F7] text-white font-bold px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg tracking-widest uppercase transition-all duration-300 shadow-[0_0_5px_rgba(168,85,247,0.3)]"
+                className="inline-block bg-[#A855F7] text-white font-bold px-3 py-1.5 sm:px-4 sm:py-2 text-lg sm:text-xl tracking-widest uppercase transition-all duration-300 shadow-[0_0_5px_rgba(168,85,247,0.3)]"
               >
                 Book a Call
               </motion.button>
@@ -259,23 +259,23 @@ const ServiceSection = ({ id, icon, title, tagline, description, benefits, whatW
       animate={isInView ? 'visible' : 'hidden'}
       whileHover="hover"
       variants={cardVariants}
-      className="bg-gradient-to-br from-white to-purple-50 rounded-2xl p-3 sm:p-6 w-full max-w-3xl mx-auto border-2 border-transparent transition-all duration-300"
+      className="bg-gradient-to-br from-white to-purple-50 rounded-2xl p-2 sm:p-4 w-full max-w-3xl mx-auto border-2 border-transparent transition-all duration-300"
       style={{ scrollSnapStop: 'always' }}
     >
-      <div className="flex items-center gap-3 mb-1 sm:mb-2">
+      <div className="flex items-center gap-2 mb-0 sm:mb-1">
         {icon}
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#A855F7] uppercase">{title}</h2>
+        <h2 className="text-lg sm:text-xl font-bold tracking-tight text-[#A855F7] uppercase">{title}</h2>
       </div>
-      <p className="text-sm sm:text-base text-gray-600 italic mb-1 sm:mb-2">{tagline}</p>
-      <p className="text-sm sm:text-base text-gray-600 mb-1 sm:mb-2">{description}</p>
-      <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-1 sm:mb-2">What You Get</h3>
-      <ul className="list-disc list-inside text-xs sm:text-sm text-gray-600 mb-1 sm:mb-2 space-y-0 sm:space-y-0.5">
+      <p className="text-base sm:text-lg text-gray-600 italic mb-0 sm:mb-1">{tagline}</p>
+      <p className="text-base sm:text-lg text-gray-600 mb-0 sm:mb-1">{description}</p>
+      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-0 sm:mb-1">What You Get</h3>
+      <ul className="list-disc list-inside text-sm sm:text-base text-gray-600 mb-0 sm:mb-1 space-y-0">
         {benefits.map((benefit, index) => (
           <li key={index}>{benefit}</li>
         ))}
       </ul>
-      <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-1 sm:mb-2">What We Can Build</h3>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-gray-600 mb-2 sm:mb-4">
+      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-0 sm:mb-1">What We Can Build</h3>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-sm sm:text-base text-gray-600 mb-1 sm:mb-2">
         {whatWeBuild.map((item, index) => (
           <li key={index} className="flex items-start">
             <span className="mr-1 text-[#A855F7]">✓</span>
@@ -289,7 +289,7 @@ const ServiceSection = ({ id, icon, title, tagline, description, benefits, whatW
             variants={glowVariants}
             whileHover="hover"
             whileTap="tap"
-            className="inline-block bg-[#A855F7] text-white font-bold px-4 py-2 sm:px-6 sm:py-3 text-base sm:text-lg tracking-widest uppercase transition-all duration-300 shadow-[0_0_5px_rgba(168,85,247,0.3)]"
+            className="inline-block bg-[#A855F7] text-white font-bold px-3 py-1.5 sm:px-4 sm:py-2 text-lg sm:text-xl tracking-widest uppercase transition-all duration-300 shadow-[0_0_5px_rgba(168,85,247,0.3)]"
           >
             Get a Quote
           </motion.button>
