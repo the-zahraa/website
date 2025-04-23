@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import {
@@ -8,31 +8,12 @@ import {
   LockClosedIcon,
   ShieldCheckIcon,
 } from '@heroicons/react/24/outline';
+import { useMediaQuery } from 'react-responsive'; // For mobile detection
 
-// Animation variants for buttons
-const glowVariants = {
-  hover: {
-    boxShadow: '0 0 15px rgba(168, 85, 247, 0.5)',
-    scale: 1.05,
-    transition: { duration: 0.3 },
-  },
-  tap: {
-    scale: 0.95,
-    transition: { duration: 0.2 },
-  },
-};
-
-// Animation variants for cards (ServiceSection)
+// Hover and tap effect variants
 const cardVariants = {
-  initial: {
-    y: 0,
-    scale: 0.95,
-  },
-  visible: {
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.5, ease: 'easeOut' },
-  },
+  initial: { y: 0, scale: 0.95 },
+  visible: { y: 0, scale: 1, transition: { duration: 0.5, ease: 'easeOut' } },
   hover: {
     y: -5,
     boxShadow: '0 0 20px rgba(168, 85, 247, 0.5)',
@@ -41,16 +22,17 @@ const cardVariants = {
   },
 };
 
-// Animation variants for fade-in
-const fadeInVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut', delay: 0.2 } },
+// Button glow variants
+const glowVariants = {
+  hover: { boxShadow: '0 0 15px rgba(168, 85, 247, 0.5)', scale: 1.05, transition: { duration: 0.3 } },
+  tap: { scale: 0.95, transition: { duration: 0.2 } },
 };
 
 const Services = () => {
   const location = useLocation();
+  const isMobile = useMediaQuery({ query: '(max-width: 640px)' }); // Detect mobile screens
 
-  // Smooth scrolling to section on page load with header offset
+  // Smooth scrolling for hash links
   useEffect(() => {
     if (location.hash) {
       const sectionId = location.hash.replace('#', '');
@@ -69,7 +51,7 @@ const Services = () => {
   return (
     <div
       className="snap-y snap-mandatory pt-16 box-border scroll-smooth overscroll-y-contain touch-pan-y"
-      style={{ scrollPaddingTop: '64px' }} // Ensures snap points account for header offset
+      style={{ scrollPaddingTop: '64px' }}
     >
       {/* Hero Section */}
       <section className="h-screen flex items-center justify-center bg-white text-gray-900 snap-start">
@@ -107,6 +89,7 @@ const Services = () => {
               'Decentralized governance systems for DAOs.',
               'Token contracts for ICOs and utility tokens.',
             ]}
+            isMobile={isMobile}
           />
         </div>
       </section>
@@ -125,6 +108,7 @@ const Services = () => {
               'Vulnerability fixes for token and staking contracts.',
               'Compliance checks for regulatory alignment.',
             ]}
+            isMobile={isMobile}
           />
         </div>
       </section>
@@ -143,6 +127,7 @@ const Services = () => {
               'Modern e-commerce storefronts with intuitive navigation.',
               'Corporate websites that reflect your brand’s authority.',
             ]}
+            isMobile={isMobile}
           />
         </div>
       </section>
@@ -161,6 +146,7 @@ const Services = () => {
               'Content management systems for easy updates.',
               'Custom dashboards for data-driven insights.',
             ]}
+            isMobile={isMobile}
           />
         </div>
       </section>
@@ -179,6 +165,7 @@ const Services = () => {
               'Community engagement bots for groups and channels.',
               'Notification bots for real-time updates and alerts.',
             ]}
+            isMobile={isMobile}
           />
         </div>
       </section>
@@ -202,48 +189,35 @@ const Services = () => {
           >
             Let’s discuss your project and find the perfect solution.
           </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <Link to="/book-a-call">
-              <motion.button
-                variants={glowVariants}
-                whileHover="hover"
-                whileTap="tap"
-                className="inline-block bg-[#A855F7] text-white font-bold px-6 py-3 rounded-full text-lg tracking-widest uppercase transition-all duration-300"
-              >
-                Book a Call
-              </motion.button>
-            </Link>
-          </motion.div>
+          <Link to="/book-a-call">
+            <motion.button
+              variants={glowVariants}
+              whileHover="hover"
+              whileTap="tap"
+              className="inline-block bg-[#A855F7] text-white font-bold px-6 py-3 rounded-full text-lg tracking-widest uppercase transition-all duration-300"
+            >
+              Book a Call
+            </motion.button>
+          </Link>
         </div>
       </section>
     </div>
   );
 };
 
-// Reusable Service Section Component
-const ServiceSection = ({ id, icon, title, description, whatWeBuild }) => {
+// Service Section Component
+const ServiceSection = ({ id, icon, title, description, whatWeBuild, isMobile }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
-  const [isTapped, setIsTapped] = useState(false); // State for tap toggle
-
-  // Toggle hover effect on tap
-  const handleTap = () => {
-    setIsTapped(!isTapped);
-  };
 
   return (
     <motion.div
       id={id}
       ref={ref}
       initial="initial"
-      animate={isInView ? 'visible' : 'hidden'}
-      whileHover="hover"
-      whileTap={isTapped ? 'hover' : undefined}
-      onTap={handleTap}
+      animate={!isMobile && isInView ? 'visible' : 'initial'} // Animations only on desktop
+      whileHover="hover" // Hover effect for larger screens
+      whileTap="hover" // Tap effect mimics hover on mobile
       variants={cardVariants}
       className="bg-gradient-to-br from-white to-purple-50 rounded-2xl p-8 w-full max-w-3xl mx-auto border-2 border-transparent transition-all duration-300"
     >
