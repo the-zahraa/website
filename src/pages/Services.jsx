@@ -67,7 +67,7 @@ const Services = () => {
   }, [location]);
 
   return (
-    <div className="snap-y snap-mandatory pt-16 box-border h-screen overflow-y-scroll overscroll-y-contain">
+    <div className="snap-y snap-mandatory pt-16 box-border h-auto overflow-y-scroll overscroll-y-contain">
       {/* Hero Section */}
       <section className="min-h-screen snap-start flex items-center justify-center bg-white">
         <div className="text-center px-4 py-8">
@@ -242,44 +242,6 @@ const Services = () => {
           </motion.div>
         </div>
       </section>
-
-      {/* Footer Section */}
-      <section className="min-h-screen snap-start flex items-center justify-center bg-gray-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center py-8 sm:py-12">
-          <h3 className="text-2xl font-bold text-[#A855F7] mb-4">Your Name</h3>
-          <nav className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mb-6">
-            <Link to="/" className="text-base sm:text-lg text-gray-400 hover:text-[#A855F7] transition-colors">
-              Home
-            </Link>
-            <Link to="/services" className="text-base sm:text-lg text-gray-400 hover:text-[#A855F7] transition-colors">
-              Services
-            </Link>
-            <Link to="/book-a-call" className="text-base sm:text-lg text-gray-400 hover:text-[#A855F7] transition-colors">
-              Book a Call
-            </Link>
-          </nav>
-          <p className="text-base sm:text-lg text-gray-400 mb-6">
-            Contact: <a href="mailto:your.email@example.com" className="hover:text-[#A855F7] transition-colors">your.email@example.com</a>
-          </p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <Link to="/book-a-call">
-              <motion.button
-                variants={glowVariants}
-                whileHover="hover"
-                whileTap="tap"
-                className="inline-block bg-[#A855F7] text-white font-bold px-6 py-3 sm:px-8 sm:py-4 text-lg sm:text-xl tracking-widest uppercase transition-all duration-300 shadow-[0_0_5px_rgba(168,85,247,0.3)]"
-              >
-                Book a Call
-              </motion.button>
-            </Link>
-          </motion.div>
-          <p className="text-sm text-gray-500 mt-6">© 2025 Your Name. All rights reserved.</p>
-        </div>
-      </section>
     </div>
   );
 };
@@ -298,6 +260,7 @@ const ServiceSection = ({ id, icon, title, tagline, description, benefits, whatW
       whileHover="hover"
       variants={cardVariants}
       className="bg-gradient-to-br from-white to-purple-50 rounded-2xl p-4 sm:p-8 w-full max-w-3xl mx-auto border-2 border-transparent transition-all duration-300"
+      style={{ scrollSnapStop: 'always' }}
     >
       <div className="flex items-center gap-4 mb-4">
         {icon}
