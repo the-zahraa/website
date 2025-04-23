@@ -67,10 +67,14 @@ const Services = () => {
   }, [location]);
 
   return (
-    <div className="snap-y snap-mandatory pt-16 box-border scroll-smooth">
-      {/* Added scroll-smooth for smoother snap transitions */}
-      {/* Hero Section (unchanged) */}
-      <section className="min-h-[85vh] flex items-center justify-center bg-white text-gray-900 snap-start mb-10">
+    <div
+      className="snap-y snap-mandatory pt-16 box-border scroll-smooth overscroll-y-contain touch-pan-y"
+      style={{ '--snap-timing': 'ease-out' }} // Added for smoother snap transitions
+    >
+      {/* Enhanced scroll behavior: overscroll-y-contain, touch-pan-y, custom snap timing */}
+      {/* Hero Section */}
+      <section className="min-h-screen sm:min-h-[85vh] flex items-center justify-center bg-white text-gray-900 snap-start sm:mb-10 scroll-snap-align-start">
+        {/* Changed to min-h-screen on mobile, sm:mb-10, added scroll-snap-align-start */}
         <div className="text-center px-4 py-8">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -93,7 +97,6 @@ const Services = () => {
 
       {/* Smart Contract Development */}
       <section className="min-h-screen sm:min-h-[85vh] flex items-center justify-center bg-white snap-start sm:mb-10 scroll-snap-align-start">
-        {/* Changed to min-h-screen on mobile, removed mb-10 on mobile, added scroll-snap-align-start */}
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="smart-contract-development"
@@ -182,8 +185,9 @@ const Services = () => {
         </div>
       </section>
 
-      {/* CTA Section (unchanged) */}
-      <section className="min-h-[85vh] flex items-center justify-center bg-gray-900 text-white snap-start">
+      {/* CTA Section */}
+      <section className="min-h-screen sm:min-h-[85vh] flex items-center justify-center bg-gray-900 text-white snap-start scroll-snap-align-start">
+        {/* Changed to min-h-screen on mobile, added scroll-snap-align-start */}
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -216,7 +220,7 @@ const Services = () => {
                 Book a Call
               </motion.button>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>
@@ -227,9 +231,9 @@ const Services = () => {
 const ServiceSection = ({ id, icon, title, description, whatWeBuild }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
-  const [isTapped, setIsTapped] = useState(false); // Added state for tap toggle
+  const [isTapped, setIsTapped] = useState(false); // Unchanged tap state
 
-  // Toggle hover effect on tap
+  // Toggle hover effect on tap (unchanged)
   const handleTap = () => {
     setIsTapped(!isTapped);
   };
@@ -241,8 +245,8 @@ const ServiceSection = ({ id, icon, title, description, whatWeBuild }) => {
       initial="initial"
       animate={isInView ? 'visible' : 'hidden'}
       whileHover="hover"
-      whileTap={isTapped ? 'hover' : undefined} // Apply hover effect when tapped
-      onTap={handleTap} // Toggle on tap
+      whileTap={isTapped ? 'hover' : undefined}
+      onTap={handleTap}
       variants={cardVariants}
       className="bg-gradient-to-br from-white to-purple-50 rounded-2xl p-8 w-full max-w-3xl mx-auto border-2 border-transparent transition-all duration-300"
     >
