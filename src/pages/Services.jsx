@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import {
@@ -67,8 +67,9 @@ const Services = () => {
   }, [location]);
 
   return (
-    <div className="snap-y snap-mandatory pt-16 box-border">
-      {/* Hero Section */}
+    <div className="snap-y snap-mandatory pt-16 box-border scroll-smooth">
+      {/* Added scroll-smooth for smoother snap transitions */}
+      {/* Hero Section (unchanged) */}
       <section className="min-h-[85vh] flex items-center justify-center bg-white text-gray-900 snap-start mb-10">
         <div className="text-center px-4 py-8">
           <motion.h1
@@ -84,7 +85,6 @@ const Services = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
             className="mt-4 text-xl sm:text-3xl md:text-4xl text-gray-600 max-w-2xl mx-auto"
-            // Increased to text-xl on mobile, text-3xl on small screens, text-4xl on desktop
           >
             Tailored blockchain and web solutions for your digital needs.
           </motion.p>
@@ -92,7 +92,8 @@ const Services = () => {
       </section>
 
       {/* Smart Contract Development */}
-      <section className="min-h-[85vh] flex items-center justify-center bg-white snap-start mb-10">
+      <section className="min-h-screen sm:min-h-[85vh] flex items-center justify-center bg-white snap-start sm:mb-10 scroll-snap-align-start">
+        {/* Changed to min-h-screen on mobile, removed mb-10 on mobile, added scroll-snap-align-start */}
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="smart-contract-development"
@@ -110,7 +111,7 @@ const Services = () => {
       </section>
 
       {/* Smart Contract Auditing */}
-      <section className="min-h-[85vh] flex items-center justify-center bg-white snap-start mb-10">
+      <section className="min-h-screen sm:min-h-[85vh] flex items-center justify-center bg-white snap-start sm:mb-10 scroll-snap-align-start">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="smart-contract-auditing"
@@ -128,7 +129,7 @@ const Services = () => {
       </section>
 
       {/* Web Design */}
-      <section className="min-h-[85vh] flex items-center justify-center bg-white snap-start mb-10">
+      <section className="min-h-screen sm:min-h-[85vh] flex items-center justify-center bg-white snap-start sm:mb-10 scroll-snap-align-start">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="web-design"
@@ -146,7 +147,7 @@ const Services = () => {
       </section>
 
       {/* Web Development */}
-      <section className="min-h-[85vh] flex items-center justify-center bg-white snap-start mb-10">
+      <section className="min-h-screen sm:min-h-[85vh] flex items-center justify-center bg-white snap-start sm:mb-10 scroll-snap-align-start">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="web-development"
@@ -164,7 +165,7 @@ const Services = () => {
       </section>
 
       {/* Smart Automation Bots */}
-      <section className="min-h-[85vh] flex items-center justify-center bg-white snap-start mb-10">
+      <section className="min-h-screen sm:min-h-[85vh] flex items-center justify-center bg-white snap-start sm:mb-10 scroll-snap-align-start">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="smart-automation-bots"
@@ -215,7 +216,7 @@ const Services = () => {
                 Book a Call
               </motion.button>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>
@@ -226,6 +227,12 @@ const Services = () => {
 const ServiceSection = ({ id, icon, title, description, whatWeBuild }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
+  const [isTapped, setIsTapped] = useState(false); // Added state for tap toggle
+
+  // Toggle hover effect on tap
+  const handleTap = () => {
+    setIsTapped(!isTapped);
+  };
 
   return (
     <motion.div
@@ -234,26 +241,20 @@ const ServiceSection = ({ id, icon, title, description, whatWeBuild }) => {
       initial="initial"
       animate={isInView ? 'visible' : 'hidden'}
       whileHover="hover"
+      whileTap={isTapped ? 'hover' : undefined} // Apply hover effect when tapped
+      onTap={handleTap} // Toggle on tap
       variants={cardVariants}
       className="bg-gradient-to-br from-white to-purple-50 rounded-2xl p-8 w-full max-w-3xl mx-auto border-2 border-transparent transition-all duration-300"
     >
       <div className="flex items-center gap-4 mb-4">
         {icon}
         <h2 className="text-2.5xl sm:text-3.5xl font-bold tracking-tight text-[#A855F7] uppercase">
-          {/* Reduced to text-2.5xl on mobile, text-3.5xl on larger screens */}
           {title}
         </h2>
       </div>
-      <p className="text-base sm:text-lg text-gray-600 mb-6">
-        {/* Reduced to text-base on mobile, text-lg on larger screens */}
-        {description}
-      </p>
-      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3">
-        {/* Reduced to text-lg on mobile, text-xl on larger screens */}
-        What We Can Build
-      </h3>
+      <p className="text-base sm:text-lg text-gray-600 mb-6">{description}</p>
+      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3">What We Can Build</h3>
       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-base sm:text-base text-gray-600 mb-8">
-        {/* Reduced to text-base on all screens */}
         {whatWeBuild.map((item, index) => (
           <li key={index} className="flex items-start">
             <span className="mr-2 text-[#A855F7]">✓</span>
