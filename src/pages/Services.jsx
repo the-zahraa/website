@@ -69,8 +69,8 @@ const Services = () => {
   return (
     <div className="snap-y snap-mandatory pt-16 box-border h-auto overflow-y-scroll overscroll-y-contain">
       {/* Hero Section */}
-      <section className="min-h-screen snap-start flex items-center justify-center bg-white mb-2">
-        <div className="text-center px-4 py-8">
+      <section className="min-h-screen snap-start flex items-center justify-center bg-white mb-0">
+        <div className="text-center px-4 py-6">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -91,7 +91,7 @@ const Services = () => {
       </section>
 
       {/* Smart Contract Development */}
-      <section className="min-h-screen snap-start flex items-center justify-center bg-white mb-2">
+      <section className="min-h-screen snap-start flex items-center justify-center bg-white mb-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <ServiceSection
             id="smart-contract-development"
@@ -114,7 +114,7 @@ const Services = () => {
       </section>
 
       {/* Smart Contract Auditing */}
-      <section className="min-h-screen snap-start flex items-center justify-center bg-white mb-2">
+      <section className="min-h-screen snap-start flex items-center justify-center bg-white mb-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <ServiceSection
             id="smart-contract-auditing"
@@ -137,7 +137,7 @@ const Services = () => {
       </section>
 
       {/* Web Design */}
-      <section className="min-h-screen snap-start flex items-center justify-center bg-white mb-2">
+      <section className="min-h-screen snap-start flex items-center justify-center bg-white mb-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <ServiceSection
             id="web-design"
@@ -160,7 +160,7 @@ const Services = () => {
       </section>
 
       {/* Web Development */}
-      <section className="min-h-screen snap-start flex items-center justify-center bg-white mb-2">
+      <section className="min-h-screen snap-start flex items-center justify-center bg-white mb-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <ServiceSection
             id="web-development"
@@ -183,7 +183,7 @@ const Services = () => {
       </section>
 
       {/* Smart Automation Bots */}
-      <section className="min-h-screen snap-start flex items-center justify-center bg-white mb-2">
+      <section className="min-h-screen snap-start flex items-center justify-center bg-white mb-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <ServiceSection
             id="smart-automation-bots"
@@ -206,8 +206,8 @@ const Services = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="min-h-screen snap-start flex items-center justify-center bg-gray-900 text-white mb-2">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center py-8 sm:py-12">
+      <section className="min-h-screen snap-start flex items-center justify-center bg-gray-900 text-white mb-0">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center py-6 sm:py-8">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -262,20 +262,20 @@ const ServiceSection = ({ id, icon, title, tagline, description, benefits, whatW
       className="bg-gradient-to-br from-white to-purple-50 rounded-2xl p-4 sm:p-8 w-full max-w-3xl mx-auto border-2 border-transparent transition-all duration-300"
       style={{ scrollSnapStop: 'always' }}
     >
-      <div className="flex items-center gap-4 mb-4">
+      <div className="flex items-center gap-4 mb-2 sm:mb-4">
         {icon}
         <h2 className="text-3xl font-bold tracking-tight text-[#A855F7] uppercase">{title}</h2>
       </div>
-      <p className="text-base sm:text-lg text-gray-600 italic mb-4 sm:mb-6">{tagline}</p>
-      <p className="text-base sm:text-lg text-gray-600 mb-4 sm:mb-6">{description}</p>
-      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3">What You Get</h3>
-      <ul className="list-disc list-inside text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 space-y-1 sm:space-y-2">
+      <p className="text-base sm:text-lg text-gray-600 italic mb-2 sm:mb-4">{tagline}</p>
+      <p className="text-base sm:text-lg text-gray-600 mb-2 sm:mb-4">{description}</p>
+      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">What You Get</h3>
+      <ul className="list-disc list-inside text-sm sm:text-base text-gray-600 mb-2 sm:mb-4 space-y-0.5 sm:space-y-1">
         {benefits.map((benefit, index) => (
           <li key={index}>{benefit}</li>
         ))}
       </ul>
-      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3">What We Can Build</h3>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base text-gray-600 mb-6 sm:mb-8">
+      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">What We Can Build</h3>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">
         {whatWeBuild.map((item, index) => (
           <li key={index} className="flex items-start">
             <span className="mr-2 text-[#A855F7]">✓</span>
