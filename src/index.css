@@ -17,9 +17,17 @@
   font-style: normal;
 }
 
+html {
+  scroll-behavior: smooth;
+  overflow-y: scroll; /* Ensure root element can scroll */
+  height: 100%; /* Allow content to overflow naturally */
+}
+
 body {
   font-family: "Raleway", sans-serif;
-  background: transparent; /* Remove the gradient */
+  background: transparent;
+  height: 100%; /* Allow content to overflow naturally */
+  margin: 0; /* Remove default margin */
 }
 
 /* Header Styles */
@@ -205,13 +213,7 @@ body {
   opacity: 0;
 }
 
-html {
-  
-  scroll-behavior: smooth;
-  overflow-y: scroll; /* Ensures smooth scrolling */
-}
-
-/* index.css */
+/* Gradient Border */
 @layer components {
   .gradient-border {
     position: relative;
@@ -230,4 +232,17 @@ html {
   .gradient-border:hover::before {
     opacity: 1;
   }
+}
+
+/* Snap Scroll Configuration */
+.snap-scroll {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-y: contain;
+  touch-action: pan-y;
+  scroll-snap-stop: always;
+  scroll-padding-top: 64px; /* Adjust for fixed header */
+  will-change: scroll-position; /* Optimize scrolling performance */
+  min-height: 100vh; /* Ensure at least full viewport height */
+  /* Removed height: 100vh to allow content to overflow and enable scrolling */
 }

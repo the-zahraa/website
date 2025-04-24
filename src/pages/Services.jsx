@@ -9,6 +9,7 @@ import {
   ShieldCheckIcon,
 } from '@heroicons/react/24/outline';
 import { useMediaQuery } from 'react-responsive';
+import motionViewportConfig from '../motionConfig'; // Import the viewport config
 
 // Animation variants for buttons
 const glowVariants = {
@@ -23,7 +24,7 @@ const glowVariants = {
   },
 };
 
-// Animation variants for cards (Desktop only)
+// Animation variants for cards (Desktop)
 const cardVariants = {
   initial: {
     y: 0,
@@ -33,6 +34,19 @@ const cardVariants = {
     y: 0,
     scale: 1,
     transition: { duration: 0.5, ease: 'easeOut' },
+  },
+};
+
+// Animation variants for cards (Mobile - Fade only)
+const mobileCardVariants = {
+  initial: {
+    opacity: 0,
+    y: 20,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut' },
   },
 };
 
@@ -86,10 +100,7 @@ const Services = () => {
   }, [location]);
 
   return (
-    <div
-      className="snap-y snap-mandatory pt-16 box-border scroll-smooth overscroll-y-contain touch-pan-y"
-      style={{ scrollPaddingTop: '64px', scrollSnapStop: 'always' }}
-    >
+    <div className="snap-scroll pt-16 box-border">
       {/* Hero Section */}
       <section className="h-screen flex items-center justify-center bg-white text-gray-900 snap-start">
         <div className="text-center px-4 py-8">
@@ -213,7 +224,7 @@ const Services = () => {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={motionViewportConfig}
             transition={{ duration: 0.6 }}
             className="text-4xl font-bold tracking-tight uppercase mb-4 sm:mb-6"
           >
@@ -222,7 +233,7 @@ const Services = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={motionViewportConfig}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl text-gray-300 mb-4 sm:mb-4"
           >
@@ -231,7 +242,7 @@ const Services = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={motionViewportConfig}
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-sm text-gray-400 mb-4 sm:mb-6"
           >
@@ -240,7 +251,7 @@ const Services = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={motionViewportConfig}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <Link to="/book-a-call">
@@ -265,12 +276,10 @@ const ServiceSection = ({ id, icon, title, description, whatWeBuild, isMobile })
   return (
     <motion.div
       id={id}
-      {...(!isMobile && {
-        initial: 'initial',
-        whileInView: 'visible',
-        viewport: { once: true, margin: '-50px' },
-        variants: cardVariants,
-      })} // Apply animations only on desktop
+      initial="initial"
+      whileInView="visible"
+      viewport={motionViewportConfig}
+      variants={isMobile ? mobileCardVariants : cardVariants}
       whileHover={{
         ...interactionVariants.hover,
         ...(!isMobile ? desktopHoverVariants.hover : {}),
