@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import {
@@ -34,26 +34,45 @@ const cardVariants = {
     scale: 1,
     transition: { duration: 0.5, ease: 'easeOut' },
   },
-  hover: {
-    y: -5,
-    boxShadow: '0 0 20px rgba(168, 85, 247, 0.5)',
-    borderColor: '#A855F7',
-    transition: { duration: 0.3, ease: 'easeOut' },
-  },
 };
 
 // Animation variants for cards (Mobile - Fade only)
 const mobileCardVariants = {
   initial: {
     opacity: 0,
+    y: 20,
   },
   visible: {
     opacity: 1,
-    transition: { duration: 0.5, ease: 'easeOut' },
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut' },
   },
 };
 
-// Animation variants for fade-in
+// Shared interaction variants for hover and tap
+const interactionVariants = {
+  hover: {
+    scale: 1.02,
+    boxShadow: '0 0 15px rgba(0, 0, 0, 0.1), 0 0 20px rgba(168, 85, 247, 0.5)', // Combine portfolio shadow and purple neon glow
+    transition: { duration: 0.3, ease: 'easeOut' },
+  },
+  tap: {
+    scale: 1.02,
+    boxShadow: '0 0 15px rgba(0, 0, 0, 0.1), 0 0 20px rgba(168, 85, 247, 0.5)', // Same as hover for consistency
+    transition: { duration: 0.3, ease: 'easeOut' },
+  },
+};
+
+// Desktop-specific hover variant (adds lift and border)
+const desktopHoverVariants = {
+  hover: {
+    y: -5,
+    borderColor: '#A855F7',
+    transition: { duration: 0.3, ease: 'easeOut' },
+  },
+};
+
+// Animation variants for fade-in (used in Hero and CTA)
 const fadeInVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut', delay: 0.2 } },
@@ -253,23 +272,26 @@ const Services = () => {
 // Reusable Service Section Component
 const ServiceSection = ({ id, icon, title, description, whatWeBuild, isMobile }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: '-50px' }); // once: false to allow fade-in/fade-out on scroll
-  const [isTouched, setIsTouched] = useState(false); // State for touch effect
+  const isInView = useInView(ref, { once: true, margin: '-50px' }); // once: true to prevent fade-out
 
   return (
     <motion.div
       id={id}
       ref={ref}
       initial="initial"
-      animate={isMobile ? (isInView ? 'visible' : 'initial') : (!isMobile && isInView ? 'visible' : 'initial')} // Fade on mobile, scale on desktop
-      whileHover={!isMobile ? 'hover' : undefined} // Hover only on desktop
-      onTouchStart={() => isMobile && setIsTouched(true)} // Apply hover effect on touch start
-      onTouchEnd={() => isMobile && setIsTouched(false)} // Remove on touch end
-      variants={isMobile ? mobileCardVariants : cardVariants} // Use mobileCardVariants on mobile, cardVariants on desktop
-      className={`flex flex-col justify-between bg-gradient-to-br from-white to-purple-50 rounded-2xl px-1 sm:p-8 pt-6 sm:pt-8 pb-6 sm:pb-8 w-full max-w-3xl mx-auto border-2 border-transparent transition-all duration-300 select-none min-h-[85vh] sm:min-h-fit ${
-        isMobile && isTouched ? 'shadow-[0_0_20px_rgba(168,85,247,0.5)] border-[#A855F7] translate-y-[-5px]' : ''
-      }`}
+      animate={isInView ? 'visible' : 'initial'}
+      variants={isMobile ? mobileCardVariants : cardVariants} // Fade on mobile, scale on desktop
+      whileHover={{
+        ...interactionVariants.hover,
+        ...(!isMobile ? desktopHoverVariants.hover : {}), // Apply desktop-specific hover effects (lift, border) only on desktop
+      }}
+      whileTap={interactionVariants.tap} // Same effect on tap for mobile
+      className="relative flex flex-col justify-between bg-gradient-to-br from-white to-purple-50 rounded-2xl px-1 sm:p-8 pt-6 sm:pt-8 pb-6 sm:pb-8 w-full max-w-3xl mx-auto border-2 border-transparent transition-all duration-300 select-none min-h-[85vh] sm:min-h-fit overflow-hidden"
     >
+      {/* Gradient overlay on touch/hover */}
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-[#A855F7]/20 to-transparent opacity-0 hover:opacity-100 motion-tap:opacity-100 transition-opacity duration-300 pointer-events-none"
+      />
       <div>
         <div className={`flex items-center gap-4 ${isMobile ? 'mb-2' : 'mb-4'}`}>
           {icon}
