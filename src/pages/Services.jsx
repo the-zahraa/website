@@ -102,7 +102,7 @@ const Services = () => {
   return (
     <div className="snap-scroll pt-16 box-border">
       {/* Hero Section */}
-      <section className="h-screen flex items-center justify-center bg-white text-gray-900 snap-start">
+      <section className="service-section h-screen flex items-center justify-center bg-white text-gray-900 snap-start">
         <div className="text-center px-4 py-8">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -124,7 +124,7 @@ const Services = () => {
       </section>
 
       {/* Smart Contract Development */}
-      <section className="min-h-[90vh] sm:h-screen flex items-center justify-center bg-white snap-start">
+      <section className="service-section min-h-[90vh] sm:h-screen flex items-center justify-center bg-white snap-start">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="smart-contract-development"
@@ -143,7 +143,7 @@ const Services = () => {
       </section>
 
       {/* Smart Contract Auditing */}
-      <section className="min-h-[90vh] sm:h-screen flex items-center justify-center bg-white snap-start">
+      <section className="service-section min-h-[90vh] sm:h-screen flex items-center justify-center bg-white snap-start">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="smart-contract-auditing"
@@ -162,7 +162,7 @@ const Services = () => {
       </section>
 
       {/* Web Design */}
-      <section className="min-h-[90vh] sm:h-screen flex items-center justify-center bg-white snap-start">
+      <section className="service-section min-h-[90vh] sm:h-screen flex items-center justify-center bg-white snap-start">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="web-design"
@@ -181,7 +181,7 @@ const Services = () => {
       </section>
 
       {/* Web Development */}
-      <section className="min-h-[90vh] sm:h-screen flex items-center justify-center bg-white snap-start">
+      <section className="service-section min-h-[90vh] sm:h-screen flex items-center justify-center bg-white snap-start">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="web-development"
@@ -200,7 +200,7 @@ const Services = () => {
       </section>
 
       {/* Smart Automation Bots */}
-      <section className="min-h-[90vh] sm:h-screen flex items-center justify-center bg-white snap-start">
+      <section className="service-section min-h-[90vh] sm:h-screen flex items-center justify-center bg-white snap-start">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="smart-automation-bots"
@@ -219,7 +219,7 @@ const Services = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="min-h-[40vh] sm:min-h-[30vh] flex items-center justify-center bg-gradient-to-b from-gray-900 to-gray-800 text-white snap-start w-full">
+      <section className="service-section min-h-[40vh] sm:min-h-[30vh] flex items-center justify-center bg-gradient-to-b from-gray-900 to-gray-800 text-white snap-start w-full">
         <div className="max-w-7xl mx-auto px-6 py-10 sm:py-12 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -285,7 +285,7 @@ const ServiceSection = ({ id, icon, title, description, whatWeBuild, isMobile })
         ...(!isMobile ? desktopHoverVariants.hover : {}),
       }}
       whileTap={interactionVariants.tap}
-      className="relative flex flex-col justify-between bg-gradient-to-br from-white to-purple-50 rounded-2xl px-1 sm:p-8 pt-6 sm:pt-8 pb-6 sm:pb-8 w-full max-w-3xl mx-auto border-2 border-transparent select-none min-h-[85vh] sm:min-h-fit overflow-hidden"
+      className="service-card relative flex flex-col justify-between bg-gradient-to-br from-white to-purple-50 rounded-2xl px-1 sm:p-8 pt-6 sm:pt-8 pb-6 sm:pb-8 w-full max-w-3xl mx-auto border-2 border-transparent select-none min-h-[85vh] sm:min-h-fit overflow-hidden"
     >
       {/* Gradient overlay on touch/hover */}
       <div

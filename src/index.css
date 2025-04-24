@@ -246,3 +246,26 @@ body {
   min-height: 100vh; /* Ensure at least full viewport height */
   /* Removed height: 100vh to allow content to overflow and enable scrolling */
 }
+
+/* Custom VH Fix for Mobile */
+.service-section {
+  min-height: calc(var(--vh, 1vh) * 90);
+}
+
+.service-section.hero {
+  min-height: calc(var(--vh, 1vh) * 100);
+}
+
+.service-card {
+  min-height: calc(var(--vh, 1vh) * 85);
+}
+
+/* Ensure desktop behavior remains unchanged */
+@media (min-width: 640px) {
+  .service-section {
+    min-height: 100vh;
+  }
+  .service-card {
+    min-height: fit-content;
+  }
+}
