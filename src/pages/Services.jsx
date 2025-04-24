@@ -23,7 +23,7 @@ const glowVariants = {
   },
 };
 
-// Animation variants for cards (Desktop)
+// Animation variants for cards (Desktop only)
 const cardVariants = {
   initial: {
     y: 0,
@@ -33,21 +33,6 @@ const cardVariants = {
     y: 0,
     scale: 1,
     transition: { duration: 0.5, ease: 'easeOut' },
-  },
-};
-
-// Animation variants for cards (Mobile - Fade only)
-const mobileCardVariants = {
-  initial: {
-    opacity: 0,
-    y: 20,
-    scale: 1, // Explicitly set scale to 1 to prevent any scaling
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.6, ease: 'easeOut' },
   },
 };
 
@@ -280,10 +265,12 @@ const ServiceSection = ({ id, icon, title, description, whatWeBuild, isMobile })
   return (
     <motion.div
       id={id}
-      initial="initial"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-50px' }} // Use whileInView directly with viewport
-      variants={isMobile ? mobileCardVariants : cardVariants}
+      {...(!isMobile && {
+        initial: 'initial',
+        whileInView: 'visible',
+        viewport: { once: true, margin: '-50px' },
+        variants: cardVariants,
+      })} // Apply animations only on desktop
       whileHover={{
         ...interactionVariants.hover,
         ...(!isMobile ? desktopHoverVariants.hover : {}),
