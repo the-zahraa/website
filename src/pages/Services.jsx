@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import {
   PaintBrushIcon,
@@ -41,10 +41,12 @@ const mobileCardVariants = {
   initial: {
     opacity: 0,
     y: 20,
+    scale: 1, // Explicitly set scale to 1 to prevent any scaling
   },
   visible: {
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: { duration: 0.6, ease: 'easeOut' },
   },
 };
@@ -53,12 +55,12 @@ const mobileCardVariants = {
 const interactionVariants = {
   hover: {
     scale: 1.02,
-    boxShadow: '0 0 15px rgba(0, 0, 0, 0.1), 0 0 20px rgba(168, 85, 247, 0.5)', // Combine portfolio shadow and purple neon glow
+    boxShadow: '0 0 15px rgba(0, 0, 0, 0.1), 0 0 20px rgba(168, 85, 247, 0.5)',
     transition: { duration: 0.3, ease: 'easeOut' },
   },
   tap: {
     scale: 1.02,
-    boxShadow: '0 0 15px rgba(0, 0, 0, 0.1), 0 0 20px rgba(168, 85, 247, 0.5)', // Same as hover for consistency
+    boxShadow: '0 0 15px rgba(0, 0, 0, 0.1), 0 0 20px rgba(168, 85, 247, 0.5)',
     transition: { duration: 0.3, ease: 'easeOut' },
   },
 };
@@ -101,7 +103,7 @@ const Services = () => {
   return (
     <div
       className="snap-y snap-mandatory pt-16 box-border scroll-smooth overscroll-y-contain touch-pan-y"
-      style={{ scrollPaddingTop: '64px' }}
+      style={{ scrollPaddingTop: '64px', scrollSnapStop: 'always' }}
     >
       {/* Hero Section */}
       <section className="h-screen flex items-center justify-center bg-white text-gray-900 snap-start">
@@ -226,6 +228,7 @@ const Services = () => {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="text-4xl font-bold tracking-tight uppercase mb-4 sm:mb-6"
           >
@@ -234,6 +237,7 @@ const Services = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl text-gray-300 mb-4 sm:mb-4"
           >
@@ -242,6 +246,7 @@ const Services = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-sm text-gray-400 mb-4 sm:mb-6"
           >
@@ -250,6 +255,7 @@ const Services = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <Link to="/book-a-call">
@@ -271,22 +277,19 @@ const Services = () => {
 
 // Reusable Service Section Component
 const ServiceSection = ({ id, icon, title, description, whatWeBuild, isMobile }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' }); // once: true to prevent fade-out
-
   return (
     <motion.div
       id={id}
-      ref={ref}
       initial="initial"
-      animate={isInView ? 'visible' : 'initial'}
-      variants={isMobile ? mobileCardVariants : cardVariants} // Fade on mobile, scale on desktop
+      whileInView="visible"
+      viewport={{ once: true, margin: '-50px' }} // Use whileInView directly with viewport
+      variants={isMobile ? mobileCardVariants : cardVariants}
       whileHover={{
         ...interactionVariants.hover,
-        ...(!isMobile ? desktopHoverVariants.hover : {}), // Apply desktop-specific hover effects (lift, border) only on desktop
+        ...(!isMobile ? desktopHoverVariants.hover : {}),
       }}
-      whileTap={interactionVariants.tap} // Same effect on tap for mobile
-      className="relative flex flex-col justify-between bg-gradient-to-br from-white to-purple-50 rounded-2xl px-1 sm:p-8 pt-6 sm:pt-8 pb-6 sm:pb-8 w-full max-w-3xl mx-auto border-2 border-transparent transition-all duration-300 select-none min-h-[85vh] sm:min-h-fit overflow-hidden"
+      whileTap={interactionVariants.tap}
+      className="relative flex flex-col justify-between bg-gradient-to-br from-white to-purple-50 rounded-2xl px-1 sm:p-8 pt-6 sm:pt-8 pb-6 sm:pb-8 w-full max-w-3xl mx-auto border-2 border-transparent select-none min-h-[85vh] sm:min-h-fit overflow-hidden"
     >
       {/* Gradient overlay on touch/hover */}
       <div
