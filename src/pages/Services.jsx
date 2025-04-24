@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import {
@@ -8,12 +8,32 @@ import {
   LockClosedIcon,
   ShieldCheckIcon,
 } from '@heroicons/react/24/outline';
-import { useMediaQuery } from 'react-responsive'; // For mobile detection
+import { useMediaQuery } from 'react-responsive';
 
-// Hover and tap effect variants
+// Animation variants for buttons
+const glowVariants = {
+  hover: {
+    boxShadow: '0 0 10px rgba(168, 85, 247, 0.7)',
+    scale: 1.05,
+    transition: { duration: 0.3 },
+  },
+  tap: {
+    scale: 0.95,
+    transition: { duration: 0.2 },
+  },
+};
+
+// Animation variants for cards (ServiceSection)
 const cardVariants = {
-  initial: { y: 0, scale: 0.95 },
-  visible: { y: 0, scale: 1, transition: { duration: 0.5, ease: 'easeOut' } },
+  initial: {
+    y: 0,
+    scale: 0.95,
+  },
+  visible: {
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.5, ease: 'easeOut' },
+  },
   hover: {
     y: -5,
     boxShadow: '0 0 20px rgba(168, 85, 247, 0.5)',
@@ -22,10 +42,10 @@ const cardVariants = {
   },
 };
 
-// Button glow variants
-const glowVariants = {
-  hover: { boxShadow: '0 0 15px rgba(168, 85, 247, 0.5)', scale: 1.05, transition: { duration: 0.3 } },
-  tap: { scale: 0.95, transition: { duration: 0.2 } },
+// Animation variants for fade-in
+const fadeInVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut', delay: 0.2 } },
 };
 
 const Services = () => {
@@ -76,7 +96,7 @@ const Services = () => {
       </section>
 
       {/* Smart Contract Development */}
-      <section className="h-screen flex items-center justify-center bg-white snap-start">
+      <section className="min-h-[90vh] sm:h-screen flex items-center justify-center bg-white snap-start">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="smart-contract-development"
@@ -95,7 +115,7 @@ const Services = () => {
       </section>
 
       {/* Smart Contract Auditing */}
-      <section className="h-screen flex items-center justify-center bg-white snap-start">
+      <section className="min-h-[90vh] sm:h-screen flex items-center justify-center bg-white snap-start">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="smart-contract-auditing"
@@ -114,7 +134,7 @@ const Services = () => {
       </section>
 
       {/* Web Design */}
-      <section className="h-screen flex items-center justify-center bg-white snap-start">
+      <section className="min-h-[90vh] sm:h-screen flex items-center justify-center bg-white snap-start">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="web-design"
@@ -133,7 +153,7 @@ const Services = () => {
       </section>
 
       {/* Web Development */}
-      <section className="h-screen flex items-center justify-center bg-white snap-start">
+      <section className="min-h-[90vh] sm:h-screen flex items-center justify-center bg-white snap-start">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="web-development"
@@ -152,7 +172,7 @@ const Services = () => {
       </section>
 
       {/* Smart Automation Bots */}
-      <section className="h-screen flex items-center justify-center bg-white snap-start">
+      <section className="min-h-[90vh] sm:h-screen flex items-center justify-center bg-white snap-start">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <ServiceSection
             id="smart-automation-bots"
@@ -171,44 +191,59 @@ const Services = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="h-screen flex items-center justify-center bg-gray-900 text-white snap-start">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+      <section className="min-h-[40vh] sm:min-h-[30vh] flex items-center justify-center bg-gradient-to-b from-gray-900 to-gray-800 text-white snap-start w-full">
+        <div className="max-w-7xl mx-auto px-6 py-10 sm:py-12 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-4xl font-bold tracking-tight uppercase mb-6"
+            className="text-4xl font-bold tracking-tight uppercase mb-4 sm:mb-6"
           >
-            Ready to Transform Your Ideas?
+            Unlock Your Project’s Potential Today!
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-gray-400 mb-8"
+            className="text-xl text-gray-300 mb-4 sm:mb-4"
           >
-            Let’s discuss your project and find the perfect solution.
+            Book a Free Consultation—Limited Slots Available!
           </motion.p>
-          <Link to="/book-a-call">
-            <motion.button
-              variants={glowVariants}
-              whileHover="hover"
-              whileTap="tap"
-              className="inline-block bg-[#A855F7] text-white font-bold px-6 py-3 rounded-full text-lg tracking-widest uppercase transition-all duration-300"
-            >
-              Book a Call
-            </motion.button>
-          </Link>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-sm text-gray-400 mb-4 sm:mb-6"
+          >
+            Join 50+ Satisfied Clients Worldwide
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <Link to="/book-a-call">
+              <motion.button
+                variants={glowVariants}
+                whileHover="hover"
+                whileTap="tap"
+                className="inline-block bg-[#A855F7] text-white font-bold px-8 py-4 rounded-full text-xl tracking-widest uppercase transition-all duration-300 shadow-[0_0_5px_rgba(168,85,247,0.5)]"
+              >
+                Book a Call
+              </motion.button>
+            </Link>
+          </motion.div>
         </div>
       </section>
     </div>
   );
 };
 
-// Service Section Component
+// Reusable Service Section Component
 const ServiceSection = ({ id, icon, title, description, whatWeBuild, isMobile }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
+  const [isTouched, setIsTouched] = useState(false); // State for touch effect
 
   return (
     <motion.div
@@ -216,28 +251,37 @@ const ServiceSection = ({ id, icon, title, description, whatWeBuild, isMobile })
       ref={ref}
       initial="initial"
       animate={!isMobile && isInView ? 'visible' : 'initial'} // Animations only on desktop
-      whileHover="hover" // Hover effect for larger screens
-      whileTap="hover" // Tap effect mimics hover on mobile
+      whileHover={!isMobile ? 'hover' : undefined} // Hover only on desktop
+      onTouchStart={() => isMobile && setIsTouched(true)} // Apply hover effect on touch start
+      onTouchEnd={() => isMobile && setIsTouched(false)} // Remove on touch end
       variants={cardVariants}
-      className="bg-gradient-to-br from-white to-purple-50 rounded-2xl p-8 w-full max-w-3xl mx-auto border-2 border-transparent transition-all duration-300"
+      className={`flex flex-col justify-between bg-gradient-to-br from-white to-purple-50 rounded-2xl px-1 sm:p-8 pt-6 sm:pt-8 pb-6 sm:pb-8 w-full max-w-3xl mx-auto border-2 border-transparent transition-all duration-300 select-none min-h-[85vh] sm:min-h-fit ${
+        isMobile && isTouched ? 'shadow-[0_0_20px_rgba(168,85,247,0.5)] border-[#A855F7] translate-y-[-5px]' : ''
+      }`}
     >
-      <div className="flex items-center gap-4 mb-4">
-        {icon}
-        <h2 className="text-2.5xl sm:text-3.5xl font-bold tracking-tight text-[#A855F7] uppercase">
-          {title}
-        </h2>
+      <div>
+        <div className={`flex items-center gap-4 ${isMobile ? 'mb-2' : 'mb-4'}`}>
+          {icon}
+          <h2 className="text-2.5xl sm:text-3.5xl font-bold tracking-tight text-[#A855F7] uppercase">
+            {title}
+          </h2>
+        </div>
+        <p className={`text-base sm:text-lg text-gray-600 ${isMobile ? 'mb-4' : 'mb-6'}`}>
+          {description}
+        </p>
+        <h3 className={`text-lg sm:text-xl font-semibold text-gray-900 ${isMobile ? 'mb-2' : 'mb-3'}`}>
+          What We Can Build
+        </h3>
+        <ul className={`grid grid-cols-1 sm:grid-cols-2 gap-4 text-base sm:text-base text-gray-600 ${isMobile ? 'mb-6' : 'mb-8'}`}>
+          {whatWeBuild.map((item, index) => (
+            <li key={index} className="flex items-start">
+              <span className="mr-2 text-[#A855F7]">✓</span>
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
-      <p className="text-base sm:text-lg text-gray-600 mb-6">{description}</p>
-      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3">What We Can Build</h3>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-base sm:text-base text-gray-600 mb-8">
-        {whatWeBuild.map((item, index) => (
-          <li key={index} className="flex items-start">
-            <span className="mr-2 text-[#A855F7]">✓</span>
-            {item}
-          </li>
-        ))}
-      </ul>
-      <div className="text-center">
+      <div className={`text-center ${isMobile ? 'mt-8 mb-6' : 'mt-8 mb-8'}`}>
         <Link to="/book-a-call">
           <motion.button
             variants={glowVariants}
