@@ -23,7 +23,7 @@ const glowVariants = {
   },
 };
 
-// Animation variants for cards (ServiceSection)
+// Animation variants for cards (Desktop)
 const cardVariants = {
   initial: {
     y: 0,
@@ -39,6 +39,17 @@ const cardVariants = {
     boxShadow: '0 0 20px rgba(168, 85, 247, 0.5)',
     borderColor: '#A855F7',
     transition: { duration: 0.3, ease: 'easeOut' },
+  },
+};
+
+// Animation variants for cards (Mobile - Fade only)
+const mobileCardVariants = {
+  initial: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.5, ease: 'easeOut' },
   },
 };
 
@@ -242,7 +253,7 @@ const Services = () => {
 // Reusable Service Section Component
 const ServiceSection = ({ id, icon, title, description, whatWeBuild, isMobile }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
+  const isInView = useInView(ref, { once: false, margin: '-50px' }); // once: false to allow fade-in/fade-out on scroll
   const [isTouched, setIsTouched] = useState(false); // State for touch effect
 
   return (
@@ -250,11 +261,11 @@ const ServiceSection = ({ id, icon, title, description, whatWeBuild, isMobile })
       id={id}
       ref={ref}
       initial="initial"
-      animate={!isMobile && isInView ? 'visible' : 'initial'} // Animations only on desktop
+      animate={isMobile ? (isInView ? 'visible' : 'initial') : (!isMobile && isInView ? 'visible' : 'initial')} // Fade on mobile, scale on desktop
       whileHover={!isMobile ? 'hover' : undefined} // Hover only on desktop
       onTouchStart={() => isMobile && setIsTouched(true)} // Apply hover effect on touch start
       onTouchEnd={() => isMobile && setIsTouched(false)} // Remove on touch end
-      variants={cardVariants}
+      variants={isMobile ? mobileCardVariants : cardVariants} // Use mobileCardVariants on mobile, cardVariants on desktop
       className={`flex flex-col justify-between bg-gradient-to-br from-white to-purple-50 rounded-2xl px-1 sm:p-8 pt-6 sm:pt-8 pb-6 sm:pb-8 w-full max-w-3xl mx-auto border-2 border-transparent transition-all duration-300 select-none min-h-[85vh] sm:min-h-fit ${
         isMobile && isTouched ? 'shadow-[0_0_20px_rgba(168,85,247,0.5)] border-[#A855F7] translate-y-[-5px]' : ''
       }`}
