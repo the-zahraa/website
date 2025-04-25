@@ -102,7 +102,7 @@ const Services = () => {
   return (
     <div className="snap-scroll pt-16 box-border">
       {/* Hero Section */}
-      <section className="service-section h-screen flex items-center justify-center bg-white text-gray-900 snap-start">
+      <section className="service-section hero h-screen flex items-center justify-center bg-white text-gray-900 snap-start">
         <div className="text-center px-4 py-8">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
