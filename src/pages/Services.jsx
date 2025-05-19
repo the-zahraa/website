@@ -89,7 +89,7 @@ const Services = () => {
       const sectionId = location.hash.replace('#', '');
       const section = document.getElementById(sectionId);
       if (section) {
-        const headerHeight = 64;
+        const headerHeight = 56; // Updated to match header height (h-12 + py-2)
         const sectionPosition = section.getBoundingClientRect().top + window.pageYOffset;
         window.scrollTo({
           top: sectionPosition - headerHeight,

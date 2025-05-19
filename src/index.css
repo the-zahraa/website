@@ -241,10 +241,9 @@ body {
   overscroll-behavior-y: contain;
   touch-action: pan-y;
   scroll-snap-stop: always;
-  scroll-padding-top: 64px; /* Adjust for fixed header */
-  will-change: scroll-position; /* Optimize scrolling performance */
-  min-height: 100vh; /* Ensure at least full viewport height */
-  /* Removed height: 100vh to allow content to overflow and enable scrolling */
+  scroll-padding-top: 56px; /* Adjusted to match header height (h-12 + py-2) */
+  will-change: scroll-position;
+  min-height: 100vh;
 }
 
 /* Custom VH Fix for Mobile */

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -6,37 +6,7 @@ import {
   TagIcon,
   ClockIcon,
 } from '@heroicons/react/24/outline';
-
-// Placeholder blog posts
-const blogPosts = [
-  {
-    id: 1,
-    title: 'Understanding Smart Contracts: A Beginner’s Guide',
-    excerpt: 'Learn the basics of smart contracts, their use cases, and how they power decentralized applications.',
-    category: 'Blockchain',
-    date: 'April 15, 2025',
-    slug: 'understanding-smart-contracts',
-    image: 'https://picsum.photos/400/200?random=1',
-  },
-  {
-    id: 2,
-    title: 'Building Responsive Websites with React and Tailwind',
-    excerpt: 'A step-by-step guide to creating modern, responsive websites using React and Tailwind CSS.',
-    category: 'Web Development',
-    date: 'April 10, 2025',
-    slug: 'responsive-websites-react-tailwind',
-    image: 'https://picsum.photos/400/200?random=2',
-  },
-  {
-    id: 3,
-    title: 'Top 5 UI/UX Design Trends for 2025',
-    excerpt: 'Explore the latest trends in UI/UX design to keep your projects ahead of the curve.',
-    category: 'UI/UX Design',
-    date: 'April 5, 2025',
-    slug: 'ui-ux-design-trends-2025',
-    image: 'https://picsum.photos/400/200?random=3',
-  },
-];
+import matter from 'gray-matter';
 
 // Animation variants for blog cards
 const cardVariants = {
@@ -47,12 +17,30 @@ const cardVariants = {
 const Blog = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [blogPosts, setBlogPosts] = useState([]);
+
+  // Load Markdown files dynamically
+  useEffect(() => {
+    const loadPosts = async () => {
+      const context = import.meta.glob('../blogs/*.md', { as: 'raw', eager: true });
+      const posts = Object.entries(context).map(([path, content]) => {
+        const { data, content: excerpt } = matter(content);
+        return {
+          id: path.match(/\/([^\/]+)\.md$/)[1], // Use slug as ID
+          ...data,
+          excerpt: excerpt.split('\n').slice(1).join(' ').substring(0, 150) + '...' // Extract first 150 chars after title
+        };
+      });
+      setBlogPosts(posts.sort((a, b) => new Date(b.date) - new Date(a.date)));
+    };
+    loadPosts();
+  }, []);
 
   // Extract unique categories
   const categories = useMemo(() => {
     const cats = new Set(blogPosts.map((post) => post.category));
     return ['All', ...cats];
-  }, []);
+  }, [blogPosts]);
 
   // Filter blog posts based on search and category
   const filteredPosts = useMemo(() => {
@@ -63,7 +51,7 @@ const Blog = () => {
       const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
       return matchesSearch && matchesCategory;
     });
-  }, [searchTerm, selectedCategory]);
+  }, [searchTerm, selectedCategory, blogPosts]);
 
   return (
     <div className="min-h-screen bg-black text-white pt-16 pb-10 px-4 sm:px-6 lg:px-8">

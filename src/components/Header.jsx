@@ -69,10 +69,7 @@ export default function Header() {
   return (
     <motion.nav
       initial={{ y: -100, opacity: 0 }}
-      animate={{
-        y: scrollDirection === 'up' ? 0 : -100,
-        opacity: 1,
-      }}
+      animate={{ y: 0, opacity: 1 }} // Disabled scroll-based animation for testing
       transition={{ duration: 0.3, ease: 'easeOut' }}
       className="fixed top-0 w-full bg-black z-50"
     >
